@@ -9,8 +9,11 @@
 <body>
 <header>
   <ul id="slide-out" class="side-nav fixed">
-    <li><a href="#!">First Sidebar Link</a></li>
-    <li><a href="#!">Second Sidebar Link</a></li>
+    <%= link_to "About", '#' %>
+    <%= link_to "Help", '#' %>
+    <%= button_tag(:class => "waves-effect waves-light btn") do %>
+        Signup/Login <i class="material-icons left">lock_outline</i>
+    <% end %>
   </ul>
   <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a></header>
 
