@@ -2,13 +2,23 @@
 <html>
 <head>
   <title>Calorie Tracker 2.0</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<header>
+  <ul id="slide-out" class="side-nav fixed">
+    <li><a href="#!">First Sidebar Link</a></li>
+    <li><a href="#!">Second Sidebar Link</a></li>
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a></header>
 
-<%= yield %>
-
+<main>
+  <div class="container">
+    <%= yield %>
+  </div>
+</main>
 </body>
+
 </html>
