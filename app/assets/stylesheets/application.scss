@@ -14,3 +14,11 @@
  *= require_self
  *= require material_icons
  */
+
+/* Custom colors*/
+@import "materialize/components/color";
+$primary-color: color("deep-purple", "base") !default;
+$secondary-color: color("orange", "base") !default;
+$success-color: color("green", "base") !default;
+
+@import "materialize";
