@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
+
+=begin
+    authenticated do
+      root :to => 'welcome#index', as: :authenticated
+    end
+
+    root :to => 'home#static_page'
+=end
   root 'static_pages#home'
+  get 'static_pages/landing'
 
   get 'static_pages/help'
 

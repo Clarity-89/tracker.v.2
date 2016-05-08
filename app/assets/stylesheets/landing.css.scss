@@ -1,0 +1,10 @@
+#landing {
+  flex: 1;
+  background: url("http://apureathlete.com/wp-content/uploads/2015/08/HKK.png") no-repeat center;
+  background-size: cover;
+  height: calc(100vh - 64px);
+}
+
+header, main, footer {
+  padding-left: 0;
+}
