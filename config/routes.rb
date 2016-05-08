@@ -9,11 +9,11 @@ Rails.application.routes.draw do
 =end
   root 'static_pages#home'
 
-  get 'static_pages/landing'
+  get 'landing' => 'static_pages#landing'
 
-  get 'static_pages/contact'
+  get 'contact' => 'static_pages#contact'
 
-  get 'static_pages/about'
+  get 'about' => 'static_pages#about'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

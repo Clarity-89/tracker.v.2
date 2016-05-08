@@ -13,14 +13,14 @@
 <body>
 <header>
   <%= render 'layouts/toolbar' %>
-  <%= render 'layouts/sidenav' unless current_page?('/static_pages/landing') %>
+  <%= render 'layouts/sidenav' unless current_page?('/landing') %>
 </header>
 
 <main>
   <%= yield %>
 </main>
 
-<%= render 'layouts/footer' unless current_page?('/static_pages/landing') %>
+<%= render 'layouts/footer' unless current_page?('/landing') %>
 </body>
 
 </html>
