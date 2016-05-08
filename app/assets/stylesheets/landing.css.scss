@@ -1,10 +1,29 @@
 #landing {
+  position: relative;
   flex: 1;
+  display: flex;
+  display: -webkit-flex;
   background: url("http://apureathlete.com/wp-content/uploads/2015/08/HKK.png") no-repeat center;
   background-size: cover;
   height: calc(100vh - 64px);
 }
 
+#landing-inner {
+  height: inherit;
+  width: 100%;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.44);
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+#landing-title {
+  width: 50%;
+}
+
+/* Remove the space for sidenav */
 header, main, footer {
   padding-left: 0;
 }
