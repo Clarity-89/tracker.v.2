@@ -21,6 +21,7 @@
 </main>
 
 <%= render 'layouts/footer' unless current_page?('/landing') || current_page?('/signup') || current_page?('/login') %>
+<%= debug(params) if Rails.env.development? %>
 </body>
 
 </html>

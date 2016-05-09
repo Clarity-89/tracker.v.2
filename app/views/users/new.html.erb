@@ -1,7 +1,40 @@
 <div id="landing">
   <div id="landing-inner">
     <div id="landing-title">
-      <h4>Create a new account</h4>
+      <h4>Create new account</h4>
+
+      <div class="row center">
+        <%= form_for @user, html: {class: "col s12"} do |f| %>
+            <div class="row">
+              <div class="input-field col s12">
+                <%= f.label :name %>
+                <%= f.text_field :name %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <%= f.label :email %>
+                <%= f.email_field :email %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <%= f.label :password %>
+                <%= f.password_field :password %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <%= f.label :password_confirmation, 'Confirmation' %>
+                <%= f.password_field :password_confirmation %>
+              </div>
+            </div>
+            <% f.submit "Create account", class: "btn waves-effect waves-light" %>
+
+        <% end %>
+
+      </div>
     </div>
   </div>
 </div>
