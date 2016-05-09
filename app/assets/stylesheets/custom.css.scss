@@ -50,9 +50,10 @@ a {
 /* New user form */
 
 form {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.55);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   color: black;
+  padding-bottom: 15px;
 }
 
 #error_explanation {

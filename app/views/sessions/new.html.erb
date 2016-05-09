@@ -1,0 +1,36 @@
+<div id="landing">
+  <div id="landing-inner">
+    <div id="landing-title">
+
+
+      <div class="row center">
+        <%= form_for :session, url: login_path, html: {class: "col s12 m8 offset-m2", novalidate: 'true', autocomplete: "off"} do |f| %>
+            <h4>Log In</h4>
+            <div class="row">
+              <div class="input-field col s12">
+                <%= f.label :email %>
+                <%= f.email_field :email, :autocomplete => :off %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <%= f.label :password %>
+                <%= f.password_field :password, :autocomplete => :off %>
+              </div>
+            </div>
+
+            <div class="row">
+              <%= f.submit "Log In", class: "btn waves-effect waves-light" %>
+            </div>
+            <p class="center">New user? <%= link_to "Sign up here.", signup_path %></p>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page-specific styles -->
+<style>header, main, footer {
+  padding-left: 0;
+}</style>

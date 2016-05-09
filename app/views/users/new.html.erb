@@ -1,10 +1,10 @@
 <div id="landing">
   <div id="landing-inner">
     <div id="landing-title">
-      <h4>Create new account</h4>
-
       <div class="row center">
         <%= form_for @user, html: {class: "col s12 m8 offset-m2", novalidate: 'true'} do |f| %>
+            <h4>Create new account</h4>
+
             <%= render 'shared/error_messages' %>
 
             <div class="row">
@@ -35,7 +35,7 @@
             <div class="row">
               <%= f.submit "Create account", class: "btn waves-effect waves-light" %>
             </div>
-            <br>
+            <p class="center">Have an account? <%= link_to "Click here to login.", login_path %></p>
         <% end %>
 
       </div>
