@@ -4,7 +4,7 @@
       <h4>Create new account</h4>
 
       <div class="row center">
-        <%= form_for @user, html: {class: "col s12"} do |f| %>
+        <%= form_for @user, html: {class: "col s12 m8 offset-m2"} do |f| %>
             <div class="row">
               <div class="input-field col s12">
                 <%= f.label :name %>
@@ -30,8 +30,10 @@
                 <%= f.password_field :password_confirmation %>
               </div>
             </div>
-            <% f.submit "Create account", class: "btn waves-effect waves-light" %>
-
+            <div class="row">
+              <%= f.submit "Create account", class: "btn waves-effect waves-light" %>
+            </div>
+            <br>
         <% end %>
 
       </div>
