@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'sessions/new'
+
 =begin
     authenticated do
       root :to => 'welcome#index', as: :authenticated
