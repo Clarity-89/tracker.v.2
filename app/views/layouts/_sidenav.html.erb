@@ -1,8 +1,9 @@
-<ul id="slide-out" class="side-nav fixed">
-  <div class="user">
-    <%= gravatar_for @user %>
-    <h2><%= @user.name %> </h2>
-    <p><%= @user.email %></p>
-  </div>
+<ul id="slide-out" class="side-nav fixed center user">
+  <li>  <%= gravatar_for @user %></li>
+  <li><%= @user.name %> </li>
+  <li><%= @user.email %></li>
 
+  <li><%= link_to "Profile", current_user %></li>
+  <li><%= link_to "Settings", '#' %></li>
+  <li><%= link_to "Log out", logout_path, method: :delete %></li>
 </ul>

@@ -1,6 +1,9 @@
 class StaticPagesController < ApplicationController
 
   def landing
+    if logged_in?
+      redirect_to home_url
+    end
   end
 
   def home
