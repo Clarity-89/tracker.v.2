@@ -64,6 +64,10 @@ form {
   }
 }
 
+#remember-me + label {
+  color: #000;
+}
+
 @media only screen and (max-width: 992px) {
   header, main, footer {
     padding-left: 0;
