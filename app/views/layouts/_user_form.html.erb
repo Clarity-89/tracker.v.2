@@ -1,0 +1,37 @@
+<%= form_for @user, html: {class: "col s12 m8 offset-m2", novalidate: 'true'} do |f| %>
+    <h4><%= f.object.new_record? ? "Create account" : "Update account" %></h4>
+
+    <%= render 'shared/error_messages' %>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :password_confirmation, 'Confirmation' %>
+        <%= f.password_field :password_confirmation %>
+      </div>
+    </div>
+    <div class="row">
+      <%= f.submit (f.object.new_record? ? "Create account" : "Update account"), class: "btn waves-effect waves-light" %>
+    </div>
+    <% if f.object.new_record? %>
+        <p class="center ">Have an account? <%= link_to "Click here to login.", login_path %></p>
+    <% end %>
+<% end %>
