@@ -13,7 +13,7 @@
 <body>
 <header>
   <%= render 'layouts/toolbar' %>
-  <% unless current_user.nil? %>
+  <% if logged_in? %>
       <%= render 'layouts/sidenav' %>
   <% end %>
 
