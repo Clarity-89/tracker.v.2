@@ -9,10 +9,11 @@ alex:
   email: test1@me.com
   password_digest: <%= User.digest('password') %>
 
-lana:
-  name: Lana Kane
-  email: hands@example.gov
+admin:
+  name: Admin User
+  email: admin@example.gov
   password_digest: <%= User.digest('password') %>
+  admin: true
 
 malory:
   name: Malory Archer
