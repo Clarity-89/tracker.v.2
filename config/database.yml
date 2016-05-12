@@ -13,7 +13,7 @@
 #
 # Configure Using Gemfile
 # gem 'pg'
-#
+
 default: &default
   adapter: postgresql
   encoding: unicode
@@ -30,9 +30,9 @@ development:
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
   #username: tracker_v_2
-  #username: 'tracker_v_2_development'
+  username: 'tracker_v_2_development'
   # The password associated with the postgres role (username).
-  #password: 111111
+  password: 111111
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -58,8 +58,8 @@ development:
 test:
   <<: *default
   database: tracker_v_2_test
-  #username: 'tracker_v_2_test'
-  #password: 111111
+  username: 'tracker_v_2_test'
+  password: 111111
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is

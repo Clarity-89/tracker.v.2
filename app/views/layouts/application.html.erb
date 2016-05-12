@@ -13,6 +13,9 @@
 <body>
 <header>
   <%= render 'layouts/toolbar' %>
+  <% unless current_user.nil? %>
+      <%= render 'layouts/sidenav' %>
+  <% end %>
 
 </header>
 
