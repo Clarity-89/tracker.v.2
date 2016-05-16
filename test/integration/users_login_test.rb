@@ -26,10 +26,10 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     # check that if user is logged in he's redirected straight to home page
     get root_path
     assert_redirected_to home_url
-    get logout_path
+    delete logout_path
     assert_not is_logged_in?
     assert_redirected_to root_url
-    get logout_path
+    delete logout_path
     follow_redirect!
   end
 
