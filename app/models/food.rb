@@ -1,4 +1,4 @@
 class Food < ActiveRecord::Base
-  has_many :users
-  has_many :servings, through: :users
+    has_many :servings
+    has_many :users, through: :servings
 end
