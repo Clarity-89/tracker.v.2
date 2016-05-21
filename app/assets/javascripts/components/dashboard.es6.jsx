@@ -3,8 +3,10 @@ class Dashboard extends React.Component {
         super(props);
         this.state = {
             day: moment().format("YYYY-MM-DD"),
-            results: '',
-            searchValue: ''
+            results: [],
+            searchValue: '',
+            currentPage: 0,
+            pageSize: 10
         }
     }
 
@@ -36,17 +38,44 @@ class Dashboard extends React.Component {
             results: '0:50'
         };
         $.get("https://api.nutritionix.com/v1_1/search/" + this.state.searchValue, params)
-            .done(response => this.setState({results: response.hits}))
+            .done(response => this.setState({results: response.hits.filter(el => el.fields.nf_serving_weight_grams)}))
             .error(response => console.log('error', response));
     }
 
+    paginate() {
+        let {pageSize, currentPage, results} = this.state;
+        return results.slice(currentPage * pageSize, (currentPage + 1) * pageSize);
+    }
+
+    setPage(number) {
+        this.setState({currentPage: number});
+    }
+
+    pageBack() {
+        if (this.state.currentPage - 1 >= 0) {
+            this.setState({currentPage: this.state.currentPage - 1})
+        }
+    }
+
+    pageForward() {
+        if (this.state.currentPage + 1 < this.state.results.length / this.state.pageSize) {
+            this.setState({currentPage: this.state.currentPage + 1})
+        }
+    }
+    isActive(value) {
+        return 'waves-effect ' + (value === this.state.currentPage ? 'active' : '');
+    }
     render() {
         return (<div class="container">
             <div className="row">
                 <div className="col s12 m4">
                     <Search value={this.state.searchValue} changeHandler={this.setSearch.bind(this)}
                             clickHandler={this.getData.bind(this)}/>
-                    <Results results={this.state.results}/>
+                    <Results results={this.paginate()}/>
+                    <Paginator numPages={Math.ceil(this.state.results.length / this.state.pageSize)}
+                               setPage={this.setPage.bind(this)} back={this.pageBack.bind(this)}
+                               forward={this.pageForward.bind(this)}
+                               active={this.isActive.bind(this)}/>
                 </div>
                 <div className="col s12 m6 offset-m2">
                     <Datepicker day={this.state.day} setDay={this.setDay.bind(this)}/>
