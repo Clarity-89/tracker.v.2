@@ -6,13 +6,19 @@ class Dashboard extends React.Component {
         }
     }
 
-    setDay(e) {
-        console.log('got date', e.target.value)
-        this.setState({day: e.target.value})
+    setDay() {
+        console.log('got date', this.state.day);
     }
 
     componentDidMount() {
-        console.log('got props', this.props, this.state.day)
+        let self = this;
+        $('.datepicker').pickadate({
+            onClose: function (e) {
+                self.setState({day: this.get()})
+            },
+            selectMonths: true,
+            selectYears: 15
+        });
     }
 
     render() {
