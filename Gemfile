@@ -18,7 +18,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # Use react as the JavaScript library
 gem 'react-rails'
 gem 'jquery-rails'
-
+gem 'momentjs-rails'
 # Materialize CSS lib
 gem 'materialize-sass'
 
