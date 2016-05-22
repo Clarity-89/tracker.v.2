@@ -1,10 +1,16 @@
 const Search = (props) => {
-    return <div className="input-field">
-        <input id="search" type="search" value={props.value} onChange={props.changeHandler}/>
-        <label for="search">Search</label>
-        <button type="button" className="btn" onClick={props.clickHandler}>Search</button>
-        <i className="material-icons">close</i>
+    return <div className="row">
+        <div className="input-field">
+            <div className="col s10">
+                <input id="search" type="search" value={props.value} onChange={props.changeHandler}/>
+                <label for="search">Search</label>
+            </div>
+            <div className="col s2">
+                <button type="button" className="btn" onClick={props.clickHandler}>Search</button>
+            </div>
+        </div>
     </div>
 };
+
 
 

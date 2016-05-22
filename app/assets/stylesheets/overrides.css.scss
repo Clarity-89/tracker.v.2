@@ -25,3 +25,8 @@ footer.page-footer {
 .collapsible-header i {
   float: right;
 }
+
+/* Decrease padding for paragraphs inside collapsible-body */
+.collapsible-body p {
+  padding: 0.3rem 1rem;
+}
