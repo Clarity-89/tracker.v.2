@@ -68,7 +68,7 @@ class Dashboard extends React.Component {
     render() {
         return (<div class="container">
             <div className="row">
-                <div className="col s12 m4">
+                <div className="col s12 m6">
                     <Search value={this.state.searchValue} changeHandler={this.setSearch.bind(this)}
                             clickHandler={this.getData.bind(this)}/>
                     <Results results={this.paginate()}/>
@@ -77,7 +77,7 @@ class Dashboard extends React.Component {
                                forward={this.pageForward.bind(this)}
                                active={this.isActive.bind(this)}/>
                 </div>
-                <div className="col s12 m6 offset-m2">
+                <div className="col s12 m6">
                     <Datepicker day={this.state.day} setDay={this.setDay.bind(this)}/>
                 </div>
             </div>
