@@ -11,7 +11,10 @@ const Results = (props) => {
             </div>
             <div className="collapsible-body">
                 <p>Size: {el.fields.nf_serving_weight_grams}g </p>
-                <p> Calories: {el.fields.nf_calories}</p>
+                <p>Calories: {el.fields.nf_calories}</p>
+                <p>Protein: {el.fields.nf_protein}</p>
+                <p>Carbohydrates: {el.fields.nf_total_carbohydrate}</p>
+                <p>Fat: {el.fields.nf_total_fat}</p>
             </div>
         </li>
     }) : <p>No results yet</p>;
