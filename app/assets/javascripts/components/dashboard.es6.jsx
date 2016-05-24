@@ -15,10 +15,11 @@ class Dashboard extends React.Component {
     }
 
     componentDidMount() {
+        this.getDailyServings();
         let self = this;
         $('.datepicker').pickadate({
             onClose: function (e) {
-                self.setState({day: this.get()});
+                self.setState({ day: this.get() });
                 $(document.activeElement).blur()
             },
             selectMonths: true,
@@ -27,7 +28,7 @@ class Dashboard extends React.Component {
     }
 
     setSearch(e) {
-        this.setState({searchValue: e.target.value})
+        this.setState({ searchValue: e.target.value })
     }
 
     getData() {
@@ -38,35 +39,41 @@ class Dashboard extends React.Component {
             results: '0:50'
         };
         $.get("https://api.nutritionix.com/v1_1/search/" + this.state.searchValue, params)
-            .done(response => this.setState({results: response.hits.filter(el => el.fields.nf_serving_weight_grams)}))
+            .done(response => this.setState({ results: response.hits.filter(el => el.fields.nf_serving_weight_grams) }))
             .error(response => console.log('error', response));
+    }
+
+    getDailyServings() {
+        $.get('/serving', { date: this.state.day })
+            .done(response => console.log('success', response))
+            .fail(response => console.log("Error", response));
     }
 
     addEntry(entry) {
         console.log('calling add');
-        $.post('/serving/create', {entry: entry, date: this.state.day})
+        $.post('/serving/create', { entry: entry, date: this.state.day })
             .done(() => console.log('success'))
             .fail(response => console.log('error', response));
     }
 
     paginate() {
-        let {pageSize, currentPage, results} = this.state;
+        let { pageSize, currentPage, results } = this.state;
         return results.slice(currentPage * pageSize, (currentPage + 1) * pageSize);
     }
 
     setPage(number) {
-        this.setState({currentPage: number});
+        this.setState({ currentPage: number });
     }
 
     pageBack() {
         if (this.state.currentPage - 1 >= 0) {
-            this.setState({currentPage: this.state.currentPage - 1})
+            this.setState({ currentPage: this.state.currentPage - 1 })
         }
     }
 
     pageForward() {
         if (this.state.currentPage + 1 < this.state.results.length / this.state.pageSize) {
-            this.setState({currentPage: this.state.currentPage + 1})
+            this.setState({ currentPage: this.state.currentPage + 1 })
         }
     }
 

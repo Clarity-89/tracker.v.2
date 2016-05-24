@@ -1,6 +1,9 @@
 class ServingsController < ApplicationController
     def index
-
+        @servings = current_user.servings.where(date: params[:date])
+        if request.xhr?
+            render json: {sevings: @servings}
+        end
     end
 
     def create
