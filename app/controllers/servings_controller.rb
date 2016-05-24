@@ -1,8 +1,15 @@
 class ServingsController < ApplicationController
     def index
         @servings = current_user.servings.where(date: params[:date])
+        @totals = {
+            cals: @servings.joins(:food).sum(:calories),
+            protein: @servings.joins(:food).sum(:protein),
+            carbs: @servings.joins(:food).sum(:carbs),
+            fat: @servings.joins(:food).sum(:fat)
+        }
+
         if request.xhr?
-            render json: {sevings: @servings}
+            render json: { servings: @servings, totals: @totals }
         end
     end
 
