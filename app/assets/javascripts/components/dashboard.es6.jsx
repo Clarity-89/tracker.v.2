@@ -24,7 +24,9 @@ class Dashboard extends React.Component {
             },
             selectMonths: true,
             selectYears: 15
-        });
+        })
+        $('.dropdown-button').dropdown({ hover: true })
+
     }
 
     setSearch(e) {
@@ -49,8 +51,9 @@ class Dashboard extends React.Component {
             .fail(response => console.log("Error", response));
     }
 
-    addEntry(entry) {
+    addEntry(entry, e) {
         console.log('calling add');
+        e.stopPropagation();
         $.post('/serving/create', { entry: entry, date: this.state.day })
             .done(() => console.log('success'))
             .fail(response => console.log('error', response));

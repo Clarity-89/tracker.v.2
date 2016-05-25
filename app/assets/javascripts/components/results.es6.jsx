@@ -7,7 +7,7 @@ const Results = (props) => {
     let results = props.results.length ? props.results.map((el, i) => {
         return <li key={i}>
             <div className="collapsible-header">{el.fields.item_name}
-                <i className="material-icons" onClick={() => props.add(el)}>add</i>
+                <i className="material-icons" onClick={(e) => props.add(el, e)}>add</i>
             </div>
             <div className="collapsible-body">
                 <p>Size: {el.fields.nf_serving_weight_grams}g </p>
