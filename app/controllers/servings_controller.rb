@@ -23,7 +23,7 @@ class ServingsController < ApplicationController
             fat: params[:entry][:fields][:nf_total_fat],
             serving_size: params[:entry][:fields][:nf_serving_weight_grams]
         }
-        food = Food.find_by(fields) || Food.create(fields)
+        food = Food.find_or_create_by(fields)
         Serving.create(food_id: food.id, user_id: current_user.id, type: 'breakfast', date: params[:date])
 
     end
