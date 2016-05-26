@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
     get 'password_resets/new'
 
     get 'password_resets/edit'

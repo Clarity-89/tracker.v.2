@@ -16,7 +16,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use react as the JavaScript library
-gem 'react-rails'
+gem 'react-rails', '1.4.1'
 gem 'jquery-rails'
 gem 'momentjs-rails'
 # Materialize CSS lib
@@ -46,27 +46,28 @@ gem 'bootstrap-will_paginate', '0.0.10'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+    # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+    gem 'byebug'
+    gem 'jasmine-rails'
 end
 
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+    # Access an IRB console on exception pages or by using <%= console %> in views
+    gem 'web-console', '~> 2.0'
 
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+    # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+    gem 'spring'
 end
 
 group :test do
-  gem 'minitest-reporters', '1.0.5'
-  gem 'mini_backtrace', '0.1.3'
-  gem 'guard-minitest', '2.3.1'
+    gem 'minitest-reporters', '1.0.5'
+    gem 'mini_backtrace', '0.1.3'
+    gem 'guard-minitest', '2.3.1'
 end
 
 group :production do
-  gem 'rails_12factor', '0.0.2'
-  gem 'puma', '3.1.0'
+    gem 'rails_12factor', '0.0.2'
+    gem 'puma', '3.1.0'
 end
 
 

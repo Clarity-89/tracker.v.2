@@ -24,7 +24,7 @@ class Dashboard extends React.Component {
             },
             selectMonths: true,
             selectYears: 15
-        })
+        });
         $('.dropdown-button').dropdown({ hover: true })
 
     }
@@ -91,7 +91,7 @@ class Dashboard extends React.Component {
     }
 
     render() {
-        return (<div class="container">
+        return (<div className="container">
             <div className="row">
                 <div className="col s12 m6">
                     <Search value={this.state.searchValue} changeHandler={this.setSearch.bind(this)}
