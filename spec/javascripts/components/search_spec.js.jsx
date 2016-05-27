@@ -6,8 +6,7 @@ describe('Search', function () {
     beforeEach(function () {
         search = new Search({
             value: 'testing',
-            changeHandler: jasmine.createSpy('changeHandler'),
-            clickHandler: jasmine.createSpy('clickHandler')
+            changeHandler: jasmine.createSpy('changeHandler')
         });
         instance = TestUtils.renderIntoDocument(search);
     });
@@ -15,5 +14,6 @@ describe('Search', function () {
     it('has default value set properly', function () {
         searchNode = ReactDOM.findDOMNode(instance).querySelectorAll("input")[0];
         expect(searchNode.value).toEqual('testing');
-    })
+    });
+    
 });
