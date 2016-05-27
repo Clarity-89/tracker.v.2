@@ -4,9 +4,7 @@ class Dashboard extends React.Component {
         this.state = {
             day: moment().format("YYYY-MM-DD"),
             results: [],
-            searchValue: '',
-            currentPage: 0,
-            pageSize: 10
+            searchValue: ''
         }
     }
 
@@ -28,10 +26,6 @@ class Dashboard extends React.Component {
         $('.dropdown-button').dropdown({ hover: true });
     }
 
-    setSearch(e) {
-        this.setState({ searchValue: e.target.value })
-    }
-
     getData() {
         let params = {
             "appId": "13957b27",
@@ -44,6 +38,10 @@ class Dashboard extends React.Component {
             .error(response => console.log('error', response));
     }
 
+    setSearch(e) {
+        this.setState({ searchValue: e.target.value })
+    }
+
     getDailyServings() {
         $.get('/serving', { date: this.state.day })
             .done(response => console.log('success', response))
@@ -51,38 +49,13 @@ class Dashboard extends React.Component {
     }
 
     addEntry(entry, e) {
-        console.log('calling add');
         e.stopPropagation();
         $.post('/serving/create', { entry: entry, date: this.state.day })
             .done(() => console.log('success'))
             .fail(response => console.log('error', response));
     }
 
-    paginate() {
-        let { pageSize, currentPage, results } = this.state;
-        return results.slice(currentPage * pageSize, (currentPage + 1) * pageSize);
-    }
-
-    setPage(number) {
-        this.setState({ currentPage: number });
-    }
-
-    pageBack() {
-        if (this.state.currentPage - 1 >= 0) {
-            this.setState({ currentPage: this.state.currentPage - 1 })
-        }
-    }
-
-    pageForward() {
-        if (this.state.currentPage + 1 < this.state.results.length / this.state.pageSize) {
-            this.setState({ currentPage: this.state.currentPage + 1 })
-        }
-    }
-
-    isActive(value) {
-        return 'waves-effect ' + (value === this.state.currentPage ? 'active' : '');
-    }
-
+   
     handleEnterPress(e) {
         if (e.keyCode == 13) {
             this.getData();
@@ -95,11 +68,7 @@ class Dashboard extends React.Component {
                 <div className="col s12 m6">
                     <Search value={this.state.searchValue} changeHandler={this.setSearch.bind(this)}
                             clickHandler={this.getData.bind(this)} keypress={this.handleEnterPress.bind(this)}/>
-                    <Results results={this.paginate()} add={this.addEntry.bind(this)}/>
-                    <Paginator numPages={Math.ceil(this.state.results.length / this.state.pageSize)}
-                               setPage={this.setPage.bind(this)} back={this.pageBack.bind(this)}
-                               forward={this.pageForward.bind(this)}
-                               active={this.isActive.bind(this)}/>
+                    <PaginatedResults addEntry={this.addEntry.bind(this)} results={this.state.results}/>
                 </div>
                 <div className="col s12 m6">
                     <Datepicker day={this.state.day} setDay={this.setDay.bind(this)}/>
