@@ -25,8 +25,7 @@ class Dashboard extends React.Component {
             selectMonths: true,
             selectYears: 15
         });
-        $('.dropdown-button').dropdown({ hover: true })
-
+        $('.dropdown-button').dropdown({ hover: true });
     }
 
     setSearch(e) {
@@ -92,20 +91,18 @@ class Dashboard extends React.Component {
 
     render() {
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col s12 m6">
-                        <Search value={this.state.searchValue} changeHandler={this.setSearch.bind(this)}
-                                clickHandler={this.getData.bind(this)} keypress={this.handleEnterPress.bind(this)}/>
-                        <Results results={this.paginate()} add={this.addEntry.bind(this)}/>
-                        <Paginator numPages={Math.ceil(this.state.results.length / this.state.pageSize)}
-                                   setPage={this.setPage.bind(this)} back={this.pageBack.bind(this)}
-                                   forward={this.pageForward.bind(this)}
-                                   active={this.isActive.bind(this)}/>
-                    </div>
-                    <div className="col s12 m6">
-                        <Datepicker day={this.state.day} setDay={this.setDay.bind(this)}/>
-                    </div>
+            <div className="row">
+                <div className="col s12 m6">
+                    <Search value={this.state.searchValue} changeHandler={this.setSearch.bind(this)}
+                            clickHandler={this.getData.bind(this)} keypress={this.handleEnterPress.bind(this)}/>
+                    <Results results={this.paginate()} add={this.addEntry.bind(this)}/>
+                    <Paginator numPages={Math.ceil(this.state.results.length / this.state.pageSize)}
+                               setPage={this.setPage.bind(this)} back={this.pageBack.bind(this)}
+                               forward={this.pageForward.bind(this)}
+                               active={this.isActive.bind(this)}/>
+                </div>
+                <div className="col s12 m6">
+                    <Datepicker day={this.state.day} setDay={this.setDay.bind(this)}/>
                 </div>
             </div>
         )
