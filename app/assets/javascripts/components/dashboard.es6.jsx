@@ -17,13 +17,13 @@ class Dashboard extends React.Component {
         let self = this;
         $('.datepicker').pickadate({
             onClose: function (e) {
-                self.setState({ day: this.get() });
+                self.setState({day: this.get()});
                 $(document.activeElement).blur()
             },
             selectMonths: true,
             selectYears: 15
         });
-        $('.dropdown-button').dropdown({ hover: true });
+        $('.dropdown-button').dropdown({hover: true});
     }
 
     getData() {
@@ -34,28 +34,27 @@ class Dashboard extends React.Component {
             results: '0:50'
         };
         $.get("https://api.nutritionix.com/v1_1/search/" + this.state.searchValue, params)
-            .done(response => this.setState({ results: response.hits.filter(el => el.fields.nf_serving_weight_grams) }))
+            .done(response => this.setState({results: response.hits.filter(el => el.fields.nf_serving_weight_grams)}))
             .error(response => console.log('error', response));
     }
 
     setSearch(e) {
-        this.setState({ searchValue: e.target.value })
+        this.setState({searchValue: e.target.value})
     }
 
     getDailyServings() {
-        $.get('/serving', { date: this.state.day })
+        $.get('/serving', {date: this.state.day})
             .done(response => console.log('success', response))
             .fail(response => console.log("Error", response));
     }
 
     addEntry(entry, e) {
         e.stopPropagation();
-        $.post('/serving/create', { entry: entry, date: this.state.day })
+        $.post('/serving/create', {entry: entry, date: this.state.day})
             .done(() => console.log('success'))
             .fail(response => console.log('error', response));
     }
 
-   
     handleEnterPress(e) {
         if (e.keyCode == 13) {
             this.getData();
@@ -72,6 +71,7 @@ class Dashboard extends React.Component {
                 </div>
                 <div className="col s12 m6">
                     <Datepicker day={this.state.day} setDay={this.setDay.bind(this)}/>
+                    <Summary />
                 </div>
             </div>
         )
