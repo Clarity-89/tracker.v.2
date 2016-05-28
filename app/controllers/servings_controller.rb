@@ -14,7 +14,6 @@ class ServingsController < ApplicationController
   end
 
   def create
-
     fields = {
         name: params[:entry][:fields][:item_name],
         calories: params[:entry][:fields][:nf_calories],

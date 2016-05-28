@@ -4,7 +4,8 @@ class Dashboard extends React.Component {
         this.state = {
             day: moment().format("YYYY-MM-DD"),
             results: [],
-            searchValue: ''
+            searchValue: '',
+            totals: props.totals
         }
     }
 
@@ -17,7 +18,9 @@ class Dashboard extends React.Component {
         let self = this;
         $('.datepicker').pickadate({
             onClose: function (e) {
-                self.setState({day: this.get()});
+                let day = this.get();
+                self.setState({day: day});
+                self.getDailyServings(day);
                 $(document.activeElement).blur()
             },
             selectMonths: true,
@@ -43,9 +46,9 @@ class Dashboard extends React.Component {
         this.setState({searchValue: e.target.value})
     }
 
-    getDailyServings() {
-        $.get('/serving', {date: this.state.day})
-            .done(response => console.log('success', response))
+    getDailyServings(day) {
+        $.get('/serving', {date: day})
+            .done(response => this.setState({totals: response.totals}))
             .fail(response => console.log("Error", response));
     }
 
@@ -72,7 +75,7 @@ class Dashboard extends React.Component {
                 </div>
                 <div className="col s12 m6">
                     <Datepicker day={this.state.day} setDay={this.setDay.bind(this)}/>
-                    <Summary total={this.props.totals}/>
+                    <Summary total={this.state.totals}/>
                 </div>
             </div>
         )
