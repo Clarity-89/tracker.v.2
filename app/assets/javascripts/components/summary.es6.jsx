@@ -4,6 +4,7 @@ class Summary extends React.Component {
     }
 
     render() {
+        let {protein, cals, carbs, fat} = this.props.total;
         return (
             <table>
                 <thead>
@@ -18,10 +19,10 @@ class Summary extends React.Component {
                 <tbody>
                 <tr>
                     <td>Total:</td>
-                    <td>{this.props.protein}</td>
-                    <td>{this.props.carbs}</td>
-                    <td>{this.props.fat}</td>
-                    <td>{this.props.calories}</td>
+                    <td>{protein}</td>
+                    <td>{carbs}</td>
+                    <td>{fat}</td>
+                    <td>{cals}</td>
                 </tr>
                 </tbody>
             </table>
