@@ -87,3 +87,12 @@ class Dashboard extends React.Component {
     }
 }
 
+const sumProps = (o1, o2) => {
+    let sum = {};
+    for (let prop in o1) {
+        if (o1.hasOwnProperty(prop)) {
+            sum[prop] = o1[prop] + o2[prop];
+        }
+    }
+    return sum;
+};
