@@ -5,7 +5,8 @@ class Dashboard extends React.Component {
             day: moment().format("YYYY-MM-DD"),
             results: [],
             searchValue: '',
-            totals: props.totals
+            totals: props.totals,
+            servings: props.servings
         }
     }
 
@@ -14,7 +15,7 @@ class Dashboard extends React.Component {
     }
 
     componentDidMount() {
-        this.getDailyServings();
+        console.log('servs', this.props.totals)
         let self = this;
         $('.datepicker').pickadate({
             onClose: function (e) {
@@ -55,7 +56,11 @@ class Dashboard extends React.Component {
     addEntry(entry, e) {
         e.stopPropagation();
         $.post('/serving/create', {entry: entry, date: this.state.day})
-            .done(() => console.log('success'))
+            .done(() => {
+                let arr = this.state.servings.slice();
+                arr.push(entry);
+                this.setState({servings: arr});
+            })
             .fail(response => console.log('error', response));
     }
 

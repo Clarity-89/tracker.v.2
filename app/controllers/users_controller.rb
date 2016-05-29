@@ -13,13 +13,15 @@ class UsersController < ApplicationController
   end
 
   def show
+    date = params[:date] || Date.today
     @user = User.find(params[:id])
-    @servings = current_user.servings.where(date: params[:date])
+    @servings = current_user.servings.where(date: date)
+    joins = @servings.joins(:food)
     @totals = {
-        cals: @servings.joins(:food).sum(:calories),
-        protein: @servings.joins(:food).sum(:protein),
-        carbs: @servings.joins(:food).sum(:carbs),
-        fat: @servings.joins(:food).sum(:fat)
+        cals: joins.sum(:calories),
+        protein: joins.sum(:protein),
+        carbs: joins.sum(:carbs),
+        fat: joins.sum(:fat)
     }
 
     if request.xhr?
