@@ -15,7 +15,6 @@ class Dashboard extends React.Component {
     }
 
     componentDidMount() {
-        console.log('servs', this.props.totals)
         let self = this;
         $('.datepicker').pickadate({
             onClose: function (e) {
@@ -28,7 +27,6 @@ class Dashboard extends React.Component {
             selectYears: 15
         });
         $('.dropdown-button').dropdown({hover: true});
-        console.log('props', this.props)
     }
 
     getData() {
@@ -57,9 +55,16 @@ class Dashboard extends React.Component {
         e.stopPropagation();
         $.post('/serving/create', {entry: entry, date: this.state.day})
             .done(() => {
-                let arr = this.state.servings.slice();
+                let arr = this.state.servings.slice(),
+                    o = {
+                        cals: entry.fields.nf_calories,
+                        protein: entry.fields.nf_protein,
+                        carbs: entry.fields.nf_total_carbohydrate,
+                        fat: entry.fields.nf_total_fat
+                    },
+                    sum = sumProps(this.state.totals, o);
                 arr.push(entry);
-                this.setState({servings: arr});
+                this.setState({servings: arr, totals: sum});
             })
             .fail(response => console.log('error', response));
     }
@@ -91,7 +96,7 @@ const sumProps = (o1, o2) => {
     let sum = {};
     for (let prop in o1) {
         if (o1.hasOwnProperty(prop)) {
-            sum[prop] = o1[prop] + o2[prop];
+            sum[prop] = (o1[prop] + o2[prop]).toFixed(2) / 1;
         }
     }
     return sum;
