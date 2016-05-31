@@ -28,8 +28,8 @@ class ServingsController < ApplicationController
     end
 
     def meal_data
-        servings = current_user.servings.where(date: params[:date])
-        breakfast = servings.where(type: 'breakfast').joins(:food)
+        servings = current_user.servings.where(date: params[:date]).joins(:food)
+        breakfast = servings.where(type: 'breakfast')
         lunch = servings.where(type: 'lunch')
         dinner = servings.where(type: 'dinner')
 
