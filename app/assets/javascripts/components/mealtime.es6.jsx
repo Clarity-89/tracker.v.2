@@ -1,4 +1,8 @@
 class Mealtime extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
 
         let times = this.props.times.map((el, i)=> {
