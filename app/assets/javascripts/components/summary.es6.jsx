@@ -4,25 +4,24 @@ class Summary extends React.Component {
     }
 
     render() {
-        let {protein, cals, carbs, fat} = this.props.total;
+        let header = this.props.macros.map((el, i)=> {
+            return <th key={i}>{cap(el)}</th>
+        });
+        let body = this.props.macros.map((el, i)=> {
+            return <td key={i}>{this.props.total[el] || 0}</td>
+        });
         return (
             <table>
                 <thead>
                 <tr>
                     <th></th>
-                    <th>Protein</th>
-                    <th>Carbs</th>
-                    <th>Fat</th>
-                    <th>Calories</th>
+                    {header}
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>Total:</td>
-                    <td>{protein}</td>
-                    <td>{carbs}</td>
-                    <td>{fat}</td>
-                    <td>{cals}</td>
+                    {body}
                 </tr>
                 </tbody>
             </table>

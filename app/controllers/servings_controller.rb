@@ -32,10 +32,12 @@ class ServingsController < ApplicationController
     result = {}
     meals.each do |meal|
       result[meal] = {totals: {}, food: []}
+      result[:totals] = {}
       props.each do |prop|
         s = servings.where(type: meal)
         result[meal][:totals][prop] = s.sum(prop)
         result[meal][:food] = s.map { |serving| serving.food }
+        result[:totals][prop] = servings.sum(prop)
       end
     end
     result

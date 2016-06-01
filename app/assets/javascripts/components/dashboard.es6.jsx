@@ -5,7 +5,7 @@ class Dashboard extends React.Component {
             date: moment().format("YYYY-MM-DD"),
             results: [],
             searchValue: '',
-            data: []
+            data: {}
         }
     }
 
@@ -15,7 +15,7 @@ class Dashboard extends React.Component {
 
     componentDidMount() {
         let self = this;
-        this.getDailyServings(this.state.date)
+        this.getDailyServings(this.state.date);
         $('.datepicker').pickadate({
             onClose: function (e) {
                 let date = this.get();
@@ -47,7 +47,7 @@ class Dashboard extends React.Component {
 
     getDailyServings(date) {
         $.get('/serving', {date: date})
-            .done(response => console.log('data', response))
+            .done(response => this.setState({data: response.data}))
             .fail(response => console.log("Error", response));
     }
 
@@ -76,6 +76,7 @@ class Dashboard extends React.Component {
     }
 
     render() {
+        let total = this.state.data.totals || {};
         return (
             <div className="row">
                 <div className="col s12 m6">
@@ -85,7 +86,7 @@ class Dashboard extends React.Component {
                 </div>
                 <div className="col s12 m6">
                     <Datepicker date={this.state.date} setDate={this.setDate.bind(this)}/>
-                    <Summary total={this.state.totals}/>
+                    <Summary total={total} {...this.props}/>
                     <Mealtime date={this.state.date}/>
                 </div>
             </div>
@@ -93,12 +94,7 @@ class Dashboard extends React.Component {
     }
 }
 
-const sumProps = (o1, o2) => {
-    let sum = {};
-    for (let prop in o1) {
-        if (o1.hasOwnProperty(prop)) {
-            sum[prop] = (o1[prop] + o2[prop]).toFixed(2) / 1;
-        }
-    }
-    return sum;
+Dashboard.defaultProps = {
+    mealtimes: ['breakfast', 'lunch', 'dinner'],
+    macros: ['protein', 'carbs', 'fat', 'calories']
 };
