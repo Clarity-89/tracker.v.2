@@ -29,10 +29,9 @@ class ServingsController < ApplicationController
   private
 
   def construct_data(meals, props, servings)
-    result = {}
+    result = {totals: {}}
     meals.each do |meal|
       result[meal] = {totals: {}, food: []}
-      result[:totals] = {}
       props.each do |prop|
         s = servings.where(type: meal)
         result[meal][:totals][prop] = s.sum(prop)

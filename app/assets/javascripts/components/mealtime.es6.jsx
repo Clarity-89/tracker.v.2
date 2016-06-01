@@ -6,13 +6,7 @@ class Mealtime extends React.Component {
     render() {
 
         let times = this.props.times.map((el, i)=> {
-            return (
-                <li key={i}>
-                    <div className="collapsible-header">
-                        {el}
-                    </div>
-                </li>
-            )
+            return <li key={i}><div className="collapsible-header">{cap(el)}</div></li>;
         });
         return (
             <ul>
