@@ -1,5 +1,5 @@
 const Datepicker = (props) => {
-    return <input type="date" className="datepicker" value={props.day} onChange={props.setDay}/>;
+    return <input type="date" className="datepicker" value={props.date} onChange={props.setDate}/>;
 };
 
 

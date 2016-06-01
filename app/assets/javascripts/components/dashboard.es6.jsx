@@ -2,31 +2,31 @@ class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            day: moment().format("YYYY-MM-DD"),
+            date: moment().format("YYYY-MM-DD"),
             results: [],
             searchValue: '',
-            totals: props.totals,
-            servings: props.servings
+            data: []
         }
     }
 
-    setDay() {
-        console.log('got date', this.state.day);
+    setDate() {
+        console.log('got date', this.state.date);
     }
 
     componentDidMount() {
         let self = this;
+        this.getDailyServings(this.state.date)
         $('.datepicker').pickadate({
             onClose: function (e) {
-                let day = this.get();
-                self.setState({ day: day });
-                self.getDailyServings(day);
+                let date = this.get();
+                self.setState({date: date});
+                self.getDailyServings(date);
                 $(document.activeElement).blur()
             },
             selectMonths: true,
             selectYears: 15
         });
-        $('.dropdown-button').dropdown({ hover: true });
+        $('.dropdown-button').dropdown({hover: true});
     }
 
     getData() {
@@ -37,23 +37,23 @@ class Dashboard extends React.Component {
             results: '0:50'
         };
         $.get("https://api.nutritionix.com/v1_1/search/" + this.state.searchValue, params)
-            .done(response => this.setState({ results: response.hits.filter(el => el.fields.nf_serving_weight_grams) }))
+            .done(response => this.setState({results: response.hits.filter(el => el.fields.nf_serving_weight_grams)}))
             .error(response => console.log('error', response));
     }
 
     setSearch(e) {
-        this.setState({ searchValue: e.target.value })
+        this.setState({searchValue: e.target.value})
     }
 
-    getDailyServings(day) {
-        $.get('/serving', { date: day })
+    getDailyServings(date) {
+        $.get('/serving', {date: date})
             .done(response => console.log('data', response))
             .fail(response => console.log("Error", response));
     }
 
     addEntry(entry, e) {
         e.stopPropagation();
-        $.post('/serving/create', { entry: entry, date: this.state.day })
+        $.post('/serving/create', {entry: entry, date: this.state.date})
             .done(() => {
                 let arr = this.state.servings.slice(),
                     o = {
@@ -64,7 +64,7 @@ class Dashboard extends React.Component {
                     },
                     sum = sumProps(this.state.totals, o);
                 arr.push(entry);
-                this.setState({ servings: arr, totals: sum });
+                this.setState({servings: arr, totals: sum});
             })
             .fail(response => console.log('error', response));
     }
@@ -84,9 +84,9 @@ class Dashboard extends React.Component {
                     <PaginatedResults addEntry={this.addEntry.bind(this)} results={this.state.results}/>
                 </div>
                 <div className="col s12 m6">
-                    <Datepicker day={this.state.day} setDay={this.setDay.bind(this)}/>
+                    <Datepicker date={this.state.date} setDate={this.setDate.bind(this)}/>
                     <Summary total={this.state.totals}/>
-                    <Mealtime date={this.state.day}/>
+                    <Mealtime date={this.state.date}/>
                 </div>
             </div>
         )

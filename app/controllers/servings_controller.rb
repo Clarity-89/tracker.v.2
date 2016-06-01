@@ -8,7 +8,7 @@ class ServingsController < ApplicationController
     @data = construct_data(MEALTIMES, PROPS, servings)
 
     if request.xhr?
-      render json: {totals: @data}
+      render json: {data: @data}
     end
   end
 
