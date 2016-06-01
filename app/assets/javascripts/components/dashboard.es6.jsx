@@ -47,7 +47,7 @@ class Dashboard extends React.Component {
 
     getDailyServings(day) {
         $.get('/serving', { date: day })
-            .done(response => this.setState({ totals: response.totals }))
+            .done(response => console.log('data', response))
             .fail(response => console.log("Error", response));
     }
 
