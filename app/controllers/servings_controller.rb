@@ -1,37 +1,14 @@
 class ServingsController < ApplicationController
+
+    MEALTIMES = %w(breakfast lunch dinner)
+    PROPS = %w(calories protein carbs fat)
+
     def index
         servings = current_user.servings.includes(:food).where(date: params[:date])
-        breakfast = servings.where(type: 'breakfast')
-        lunch = servings.where(type: 'lunch')
-        dinner = servings.where(type: 'dinner')
-        foods = []
-        servings.each do |serving|
-            foods.push(serving.food)
-        end
-        @totals = {
-            breakfast: {
-                cals: breakfast.sum(:calories),
-                protein: breakfast.sum(:protein),
-                carbs: breakfast.sum(:carbs),
-                fat: breakfast.sum(:fat)
-            },
-            lunch: {
-                cals: lunch.sum(:calories),
-                protein: lunch.sum(:protein),
-                carbs: lunch.sum(:carbs),
-                fat: lunch.sum(:fat)
-            },
-            dinner: {
-                cals: dinner.sum(:calories),
-                protein: dinner.sum(:protein),
-                carbs: dinner.sum(:carbs),
-                fat: dinner.sum(:fat)
-            },
-            bf: foods
-        }
+        @data = construct_data(MEALTIMES, PROPS, servings)
 
         if request.xhr?
-            render json: { totals: @totals }
+            render json: { totals: @data }
         end
     end
 
@@ -47,6 +24,20 @@ class ServingsController < ApplicationController
         food = Food.find_or_create_by(fields)
         Serving.create(food_id: food.id, user_id: current_user.id, type: 'breakfast', date: params[:date])
 
+    end
+
+    private
+
+    def construct_data(meals, props, servings)
+        result = {}
+        meals.each do |meal|
+            result[meal] = { totals: {}, food: [] }
+            props.each do |prop|
+                result[meal][:totals][prop] = servings.where(type: meal).sum(prop)
+                result[meal][:food] = servings.map { |serving| serving.food }
+            end
+        end
+        result
     end
 
 end
