@@ -27,11 +27,14 @@ class Mealtime extends React.Component {
                                 }
                             </div>
                         </div>
+                        <div className="collapsible-body">
+                            <Product food={this.props.data[time]['food']} {...this.props}/>
+                        </div>
                     </li>
                 )
             });
             return (
-                <ul>
+                <ul className="collapsible">
                     {times}
                 </ul>
             )
@@ -43,4 +46,19 @@ class Mealtime extends React.Component {
 
 Mealtime.defaultProps = {
     times: ['breakfast', 'lunch', 'dinner']
+};
+
+const Product = (props) => {
+
+    let result = props.food.map((el, i) => {
+
+        return <p key={i}>{el.name} {el.protein} {el.carbs} {el.fat} {el.calories}</p>
+
+    });
+    console.log(result)
+    return (
+
+        <div>{result}</div>
+
+    )
 };
