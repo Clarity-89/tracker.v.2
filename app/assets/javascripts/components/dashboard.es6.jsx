@@ -88,7 +88,7 @@ class Dashboard extends React.Component {
                 <div className="col s12 m6">
                     <Datepicker date={this.state.date} setDate={this.setDate.bind(this)}/>
                     <Summary total={total} macros={this.props.macros}/>
-                    <Mealtime date={this.state.date} macros={this.props.macros}/>
+                    <Mealtime data={this.state.data.mealtimes} macros={this.props.macros}/>
                 </div>
             </div>
         )
