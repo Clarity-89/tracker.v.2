@@ -77,6 +77,7 @@ class Dashboard extends React.Component {
 
     render() {
         let total = this.state.data.totals || {};
+        console.log(this.state.data)
         return (
             <div className="row">
                 <div className="col s12 m6">
