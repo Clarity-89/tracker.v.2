@@ -19,14 +19,14 @@ class Dashboard extends React.Component {
         $('.datepicker').pickadate({
             onClose: function (e) {
                 let date = this.get();
-                self.setState({date: date});
+                self.setState({ date: date });
                 self.getDailyServings(date);
                 $(document.activeElement).blur()
             },
             selectMonths: true,
             selectYears: 15
         });
-        $('.dropdown-button').dropdown({hover: true});
+        $('.dropdown-button').dropdown({ hover: true });
     }
 
     getData() {
@@ -37,23 +37,23 @@ class Dashboard extends React.Component {
             results: '0:50'
         };
         $.get("https://api.nutritionix.com/v1_1/search/" + this.state.searchValue, params)
-            .done(response => this.setState({results: response.hits.filter(el => el.fields.nf_serving_weight_grams)}))
+            .done(response => this.setState({ results: response.hits.filter(el => el.fields.nf_serving_weight_grams) }))
             .error(response => console.log('error', response));
     }
 
     setSearch(e) {
-        this.setState({searchValue: e.target.value})
+        this.setState({ searchValue: e.target.value })
     }
 
     getDailyServings(date) {
-        $.get('/serving', {date: date})
-            .done(response => this.setState({data: response.data}))
+        $.get('/serving', { date: date })
+            .done(response => this.setState({ data: response.data }))
             .fail(response => console.log("Error", response));
     }
 
     addEntry(entry, e) {
         e.stopPropagation();
-        $.post('/serving/create', {entry: entry, date: this.state.date})
+        $.post('/serving/create', { entry: entry, date: this.state.date })
             .done(() => {
                 let arr = this.state.servings.slice(),
                     o = {
@@ -64,7 +64,7 @@ class Dashboard extends React.Component {
                     },
                     sum = sumProps(this.state.totals, o);
                 arr.push(entry);
-                this.setState({servings: arr, totals: sum});
+                this.setState({ servings: arr, totals: sum });
             })
             .fail(response => console.log('error', response));
     }

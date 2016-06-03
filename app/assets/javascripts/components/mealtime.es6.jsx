@@ -3,6 +3,11 @@ class Mealtime extends React.Component {
         super(props);
     }
 
+    // Manually toggle collapsible on click
+    click(e) {
+        $(ReactDOM.findDOMNode(e.currentTarget)).siblings('.collapsible-body').toggle()
+    }
+
     render() {
 
         if (this.props.data) {
@@ -10,18 +15,18 @@ class Mealtime extends React.Component {
 
                 return (
                     <li key={i1}>
-                        <div className="collapsible-header" id="header-custom">
+                        <div className="collapsible-header header-custom" onClick={this.click.bind(this)}>
                             <div className="row">
-                                <div className="col s4">
+                                <span className="col s4">
                                     {cap(time)}
-                                </div>
+                                </span>
                                 {
                                     this.props.macros.map((macro, i2) => {
 
                                         return (
-                                            <div className="col s2" key={i2}>
+                                            <span className="col s2" key={i2}>
                                                 {this.props.data[time]['totals'][macro]}
-                                            </div>
+                                            </span>
                                         )
                                     })
                                 }
@@ -34,7 +39,7 @@ class Mealtime extends React.Component {
                 )
             });
             return (
-                <ul className="collapsible">
+                <ul className="collapsible" data-collapsible="accordion">
                     {times}
                 </ul>
             )
@@ -51,11 +56,8 @@ Mealtime.defaultProps = {
 const Product = (props) => {
 
     let result = props.food.map((el, i) => {
-
         return <p key={i}>{el.name} {el.protein} {el.carbs} {el.fat} {el.calories}</p>
-
     });
-    console.log(result)
     return (
 
         <div>{result}</div>
