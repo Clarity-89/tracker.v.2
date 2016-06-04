@@ -51,24 +51,22 @@ class Dashboard extends React.Component {
             .fail(response => console.log("Error", response));
     }
 
-    addEntry(entry, e) {
+    addEntry(entry, time, e) {
         e.stopPropagation();
         e.preventDefault();
-        console.log($(ReactDOM.findDOMNode(e.target)).siblings('.dropdown-content'))
-    
-        /*  $.post('/serving/create', {entry: entry, date: this.state.date})
-         .done(() => {
-         let copy = Object.assign({}, this.state.data),
-         o = {
-         calories: entry.fields.nf_calories,
-         protein: entry.fields.nf_protein,
-         carbs: entry.fields.nf_total_carbohydrate,
-         fat: entry.fields.nf_total_fat
-         };
-         copy.totals = sumProps(copy.totals, o);
-         this.setState({data: copy});
-         })
-         .fail(response => console.log('error', response));*/
+        $.post('/serving/create', {entry: entry, date: this.state.date, time: time})
+            .done(() => {
+                let copy = Object.assign({}, this.state.data),
+                    o = {
+                        calories: entry.fields.nf_calories,
+                        protein: entry.fields.nf_protein,
+                        carbs: entry.fields.nf_total_carbohydrate,
+                        fat: entry.fields.nf_total_fat
+                    };
+                copy.totals = sumProps(copy.totals, o);
+                this.setState({data: copy});
+            })
+            .fail(response => console.log('error', response));
     }
 
     handleEnterPress(e) {
@@ -85,12 +83,13 @@ class Dashboard extends React.Component {
                 <div className="col s12 m6">
                     <Search value={this.state.searchValue} changeHandler={this.setSearch.bind(this)}
                             clickHandler={this.getData.bind(this)} keypress={this.handleEnterPress.bind(this)}/>
-                    <PaginatedResults addEntry={this.addEntry.bind(this)} results={this.state.results}/>
+                    <PaginatedResults addEntry={this.addEntry.bind(this)} results={this.state.results}
+                                      times={this.props.times}/>
                 </div>
                 <div className="col s12 m6">
                     <Datepicker date={this.state.date} setDate={this.setDate.bind(this)}/>
                     <Summary total={total} macros={this.props.macros}/>
-                    <Mealtime data={this.state.data.mealtimes} macros={this.props.macros}/>
+                    <Mealtime data={this.state.data.mealtimes} macros={this.props.macros} times={this.props.times}/>
                 </div>
             </div>
         )

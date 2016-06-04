@@ -20,7 +20,7 @@ class PaginatedResults extends React.Component {
     render() {
         return (
             <span>
-              <Results results={this.paginate()} add={this.props.addEntry}/>
+              <Results results={this.paginate()} add={this.props.addEntry} times={this.props.times}/>
               <Paginator results={this.props.results} setPage={this.setPage.bind(this)} 
                          currentPage={this.state.currentPage} pageSize={this.state.pageSize}/>
             </span>

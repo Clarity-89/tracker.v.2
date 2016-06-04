@@ -49,18 +49,11 @@ class Mealtime extends React.Component {
     }
 }
 
-Mealtime.defaultProps = {
-    times: ['breakfast', 'lunch', 'dinner']
-};
-
 const Product = (props) => {
 
     let result = props.food.map((el, i) => {
         return <p key={i}>{el.name} {el.protein} {el.carbs} {el.fat} {el.calories}</p>
     });
-    return (
-
-        <div>{result}</div>
-
-    )
+    
+    return <div>{result}</div>;
 };

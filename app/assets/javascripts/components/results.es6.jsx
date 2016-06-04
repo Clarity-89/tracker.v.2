@@ -15,13 +15,12 @@ class Results extends React.Component {
         $(ReactDOM.findDOMNode(e.currentTarget)).siblings('.dropdown-content').toggle();
     }
 
-
     render() {
         let results = this.props.results.length ? this.props.results.map((el, i) => {
             return <li key={i}>
                 <div className="collapsible-header">{el.fields.item_name}
                     <i className="material-icons dropdown-button" onClick={this.showMenu.bind(this)}>add</i>
-                    <Dropdown />
+                    <Dropdown times={this.props.times} add={this.props.add} meal={el}/>
                 </div>
 
                 <div className="collapsible-body">
@@ -39,14 +38,10 @@ class Results extends React.Component {
     }
 }
 
-
 const Dropdown = (props) => {
-    return (
-        <ul className='dropdown-content'>
-            <li onClick={(e) => this.props.add(el, e)}><a href="#!">one</a></li>
-            <li><a href="#!">two</a></li>
-            <li className="divider"></li>
-            <li><a href="#!">three</a></li>
-        </ul>
-    )
+    let menu = props.times.map((el, i) => {
+        return <li key={i}><a href="#" onClick={(e) => props.add(props.meal, el, e)}>{cap(el)}</a></li>
+    });
+
+    return <ul className='dropdown-content'>{menu}</ul>
 };
