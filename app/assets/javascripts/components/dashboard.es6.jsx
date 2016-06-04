@@ -55,6 +55,7 @@ class Dashboard extends React.Component {
         e.stopPropagation();
         e.preventDefault();
         $.post('/serving/create', {entry: entry, date: this.state.date, time: time})
+        // Update state to show new values immediately
             .done(() => {
                 let copy = Object.assign({}, this.state.data),
                     o = {
@@ -64,6 +65,7 @@ class Dashboard extends React.Component {
                         fat: entry.fields.nf_total_fat
                     };
                 copy.totals = sumProps(copy.totals, o);
+                copy.mealtimes[time].totals = sumProps(copy.mealtimes[time].totals, o);
                 this.setState({data: copy});
             })
             .fail(response => console.log('error', response));
@@ -77,7 +79,7 @@ class Dashboard extends React.Component {
 
     render() {
         let total = this.state.data.totals || {};
-        //  console.log(this.state.data)
+        //console.log(this.state.data)
         return (
             <div className="row">
                 <div className="col s12 m6">
