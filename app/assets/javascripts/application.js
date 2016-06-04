@@ -22,5 +22,7 @@
 $(document).ready(function () {
     // Initialize collapse button
     $(".button-collapse").sideNav();
-   
+    $('body').on('click', function () {
+        $('.dropdown-content').hide();
+    });
 });

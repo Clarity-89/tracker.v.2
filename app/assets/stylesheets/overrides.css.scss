@@ -40,3 +40,12 @@ footer.page-footer {
 .header-custom {
   padding: 0;
 }
+
+.collapsible-header {
+  position: relative;
+  .dropdown-content {
+    opacity: 1;
+    right: 0;
+    top: 0;
+  }
+}

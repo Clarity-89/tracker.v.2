@@ -19,14 +19,14 @@ class Dashboard extends React.Component {
         $('.datepicker').pickadate({
             onClose: function (e) {
                 let date = this.get();
-                self.setState({ date: date });
+                self.setState({date: date});
                 self.getDailyServings(date);
                 $(document.activeElement).blur()
             },
             selectMonths: true,
             selectYears: 15
         });
-        $('.dropdown-button').dropdown({ hover: true });
+        // $('.dropdown-button').dropdown({hover: true});
     }
 
     getData() {
@@ -37,37 +37,38 @@ class Dashboard extends React.Component {
             results: '0:50'
         };
         $.get("https://api.nutritionix.com/v1_1/search/" + this.state.searchValue, params)
-            .done(response => this.setState({ results: response.hits.filter(el => el.fields.nf_serving_weight_grams) }))
+            .done(response => this.setState({results: response.hits.filter(el => el.fields.nf_serving_weight_grams)}))
             .error(response => console.log('error', response));
     }
 
     setSearch(e) {
-        this.setState({ searchValue: e.target.value })
+        this.setState({searchValue: e.target.value})
     }
 
     getDailyServings(date) {
-        $.get('/serving', { date: date })
-            .done(response => this.setState({ data: response.data }))
+        $.get('/serving', {date: date})
+            .done(response => this.setState({data: response.data}))
             .fail(response => console.log("Error", response));
     }
 
     addEntry(entry, e) {
         e.stopPropagation();
-        $.post('/serving/create', { entry: entry, date: this.state.date })
-            .done(() => {
-                let copy = Object.assign({}, this.state.data),
-                    o = {
-                        calories: entry.fields.nf_calories,
-                        protein: entry.fields.nf_protein,
-                        carbs: entry.fields.nf_total_carbohydrate,
-                        fat: entry.fields.nf_total_fat
-                    };
-                console.log('copy', copy, o)
-                    copy.totals = sumProps(copy.totals, o);
-
-                this.setState({ data: copy });
-            })
-            .fail(response => console.log('error', response));
+        e.preventDefault();
+        console.log($(ReactDOM.findDOMNode(e.target)).siblings('.dropdown-content'))
+    
+        /*  $.post('/serving/create', {entry: entry, date: this.state.date})
+         .done(() => {
+         let copy = Object.assign({}, this.state.data),
+         o = {
+         calories: entry.fields.nf_calories,
+         protein: entry.fields.nf_protein,
+         carbs: entry.fields.nf_total_carbohydrate,
+         fat: entry.fields.nf_total_fat
+         };
+         copy.totals = sumProps(copy.totals, o);
+         this.setState({data: copy});
+         })
+         .fail(response => console.log('error', response));*/
     }
 
     handleEnterPress(e) {
@@ -78,7 +79,7 @@ class Dashboard extends React.Component {
 
     render() {
         let total = this.state.data.totals || {};
-        console.log(this.state.data)
+        //  console.log(this.state.data)
         return (
             <div className="row">
                 <div className="col s12 m6">
@@ -97,5 +98,6 @@ class Dashboard extends React.Component {
 }
 
 Dashboard.defaultProps = {
-    macros: ['protein', 'carbs', 'fat', 'calories']
+    macros: ['protein', 'carbs', 'fat', 'calories'],
+    times: ['breakfast', 'lunch', 'dinner']
 };
