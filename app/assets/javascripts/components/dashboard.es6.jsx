@@ -55,16 +55,17 @@ class Dashboard extends React.Component {
         e.stopPropagation();
         $.post('/serving/create', { entry: entry, date: this.state.date })
             .done(() => {
-                let arr = this.state.servings.slice(),
+                let copy = Object.assign({}, this.state.data),
                     o = {
-                        cals: entry.fields.nf_calories,
+                        calories: entry.fields.nf_calories,
                         protein: entry.fields.nf_protein,
                         carbs: entry.fields.nf_total_carbohydrate,
                         fat: entry.fields.nf_total_fat
-                    },
-                    sum = sumProps(this.state.totals, o);
-                arr.push(entry);
-                this.setState({ servings: arr, totals: sum });
+                    };
+                console.log('copy', copy, o)
+                    copy.totals = sumProps(copy.totals, o);
+
+                this.setState({ data: copy });
             })
             .fail(response => console.log('error', response));
     }

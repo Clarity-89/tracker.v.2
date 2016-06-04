@@ -12,4 +12,4 @@ const sumProps = (o1, o2) => {
 // capitalize a word
 const cap = (word) => {
     return word[0].toUpperCase() + word.slice(1);
-}
+};
