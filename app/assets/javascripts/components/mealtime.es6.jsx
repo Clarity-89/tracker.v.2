@@ -52,8 +52,16 @@ class Mealtime extends React.Component {
 const Product = (props) => {
 
     let result = props.food.map((el, i) => {
-        return <p key={i}>{el.name} {el.protein} {el.carbs} {el.fat} {el.calories}</p>
+        return (
+            <div className="row" key={i}>
+                <span className="col s4">{el.name}</span>
+                <span className="col s2">{el.protein}</span>
+                <span className="col s2">{el.carbs}</span>
+                <span className="col s2">{el.fat}</span>
+                <span className="col s2">{el.calories}</span>
+            </div>
+        )
     });
-    
-    return <div>{result}</div>;
+
+    return <span>{result}</span>;
 };

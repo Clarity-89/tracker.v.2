@@ -27,8 +27,12 @@ footer.page-footer {
 }
 
 /* Decrease padding for paragraphs inside collapsible-body */
-.collapsible-body p {
-  padding: 0.3rem 1rem;
+.collapsible-body {
+  max-height: 300px;
+  overflow: auto;
+  p {
+    padding: 0.3rem 1rem;
+  }
 }
 
 /* Keep the default table padding */
