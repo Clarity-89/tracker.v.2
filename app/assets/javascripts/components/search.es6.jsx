@@ -2,7 +2,7 @@ const Search = (props) => {
     return (
         <div className="row">
             <div className="input-field">
-                <div className="col s10">
+                <div className="col s8">
                     <input id="search" type="search" value={props.value} onChange={props.changeHandler}
                            onKeyDown={props.keypress}/>
                     <label htmlFor="search">Search</label>

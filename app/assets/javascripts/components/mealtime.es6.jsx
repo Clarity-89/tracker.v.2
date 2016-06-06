@@ -17,7 +17,7 @@ class Mealtime extends React.Component {
                     <li key={i1}>
                         <div className="collapsible-header header-custom" onClick={this.click.bind(this)}>
                             <div className="row">
-                                <span className="col s4">
+                                <span className="col s3">
                                     {cap(time)}
                                 </span>
                                 {
@@ -55,7 +55,7 @@ const Product = (props) => {
     let result = props.food.map((el, i) => {
         return (
             <div className="row" key={i}>
-                <span className="col s4">{el.name}</span>
+                <span className="col s3">{el.name}</span>
                 <span className="col s2">{el.protein}</span>
                 <span className="col s2">{el.carbs}</span>
                 <span className="col s2">{el.fat}</span>

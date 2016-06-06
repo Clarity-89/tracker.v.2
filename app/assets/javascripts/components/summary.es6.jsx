@@ -14,13 +14,13 @@ class Summary extends React.Component {
             <table>
                 <thead>
                 <tr className="row">
-                    <th className="col s4 th">&nbsp;</th>
+                    <th className="col s3 th">&nbsp;</th>
                     {header}
                 </tr>
                 </thead>
                 <tbody>
                 <tr className="row">
-                    <td className="col s4 td">Total:</td>
+                    <td className="col s3 td">Total:</td>
                     {body}
                 </tr>
                 </tbody>
