@@ -19,7 +19,7 @@ class Dashboard extends React.Component {
         $('.datepicker').pickadate({
             onClose: function (e) {
                 let date = this.get();
-                self.setState({date: date});
+                self.setState({ date: date });
                 self.getDailyServings(date);
                 $(document.activeElement).blur()
             },
@@ -37,28 +37,29 @@ class Dashboard extends React.Component {
             results: '0:50'
         };
         $.get("https://api.nutritionix.com/v1_1/search/" + this.state.searchValue, params)
-            .done(response => this.setState({results: response.hits.filter(el => el.fields.nf_serving_weight_grams)}))
+            .done(response => this.setState({ results: response.hits.filter(el => el.fields.nf_serving_weight_grams) }))
             .error(response => console.log('error', response));
     }
 
     setSearch(e) {
-        this.setState({searchValue: e.target.value})
+        this.setState({ searchValue: e.target.value })
     }
 
     getDailyServings(date) {
-        $.get('/serving', {date: date})
-            .done(response => this.setState({data: response.data}))
+        $.get('/serving', { date: date })
+            .done(response => this.setState({ data: response.data }))
             .fail(response => console.log("Error", response));
     }
 
     addEntry(entry, time, e) {
         e.stopPropagation();
         e.preventDefault();
-        $.post('/serving/create', {entry: entry, date: this.state.date, time: time})
+        $.post('/serving/create', { entry: entry, date: this.state.date, time: time })
         // Update state to show new values immediately
             .done(() => {
                 let copy = Object.assign({}, this.state.data),
                     o = {
+                        name: entry.fields.item_name,
                         calories: entry.fields.nf_calories,
                         protein: entry.fields.nf_protein,
                         carbs: entry.fields.nf_total_carbohydrate,
@@ -66,7 +67,8 @@ class Dashboard extends React.Component {
                     };
                 copy.totals = sumProps(copy.totals, o);
                 copy.mealtimes[time].totals = sumProps(copy.mealtimes[time].totals, o);
-                this.setState({data: copy});
+                copy.mealtimes[time].food.push(o);
+                this.setState({ data: copy });
             })
             .fail(response => console.log('error', response));
     }
