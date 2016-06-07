@@ -32,7 +32,7 @@ class Results extends React.Component {
                     <p>Fat: {el.fields.nf_total_fat}</p>
                 </div>
             </li>
-        }) : <p>No results yet</p>;
+        }) : <p className="no-results">No results for your query</p>;
 
         return <ul className="collapsible" data-collapsible="accordion">{data}</ul>
     }

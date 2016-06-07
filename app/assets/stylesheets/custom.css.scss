@@ -80,6 +80,10 @@ input::-webkit-inner-spin-button, input::-webkit-clear-button {
   text-align: center;
 }
 
+.no-results {
+  padding: 15px;
+}
+
 @media only screen and (max-width: 992px) {
   header, main, footer {
     padding-left: 0;
