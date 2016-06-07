@@ -82,3 +82,8 @@ input::-webkit-inner-spin-button, input::-webkit-clear-button {
   }
 }
 
+@media only screen and (max-width: 448px) {
+  body {
+    font-size: 12px;
+  }
+}
