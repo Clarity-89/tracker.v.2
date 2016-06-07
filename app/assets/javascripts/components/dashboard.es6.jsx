@@ -5,7 +5,8 @@ class Dashboard extends React.Component {
             date: moment().format("YYYY-MM-DD"),
             results: [],
             searchValue: '',
-            data: {}
+            data: {},
+            loading: false
         }
     }
 
@@ -29,6 +30,7 @@ class Dashboard extends React.Component {
     }
 
     getData() {
+        this.setState({ loading: true });
         let params = {
             "appId": "13957b27",
             "appKey": "634647fd3fadbe686dbaacdbea287beb",
@@ -36,8 +38,14 @@ class Dashboard extends React.Component {
             results: '0:50'
         };
         $.get("https://api.nutritionix.com/v1_1/search/" + this.state.searchValue, params)
-            .done(response => this.setState({ results: response.hits.filter(el => el.fields.nf_serving_weight_grams) }))
-            .error(response => console.log('error', response));
+            .done(response => this.setState({
+                loading: false,
+                results: response.hits.filter(el => el.fields.nf_serving_weight_grams)
+            }))
+            .error(response => {
+                this.setState({ loading: false });
+                console.log('error', response)
+            });
     }
 
     setSearch(e) {
@@ -87,7 +95,7 @@ class Dashboard extends React.Component {
                     <Search value={this.state.searchValue} changeHandler={this.setSearch.bind(this)}
                             clickHandler={this.getData.bind(this)} keypress={this.handleEnterPress.bind(this)}/>
                     <PaginatedResults addEntry={this.addEntry.bind(this)} results={this.state.results}
-                                      times={this.props.times}/>
+                                      times={this.props.times} loading={this.state.loading}/>
                 </div>
                 <div className="col s12 m6">
                     <Datepicker date={this.state.date} setDate={this.setDate.bind(this)}/>

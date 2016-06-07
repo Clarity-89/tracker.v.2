@@ -76,6 +76,10 @@ input::-webkit-inner-spin-button, input::-webkit-clear-button {
   font-size: 16px;
 }
 
+.loader-container {
+  text-align: center;
+}
+
 @media only screen and (max-width: 992px) {
   header, main, footer {
     padding-left: 0;

@@ -18,11 +18,14 @@ class PaginatedResults extends React.Component {
     }
 
     render() {
+        let resultsOrLoader = this.props.loading ? <Loader/> :
+            <Results results={this.paginate()} add={this.props.addEntry} times={this.props.times}/>;
+
         return (
             <span>
-              <Results results={this.paginate()} add={this.props.addEntry} times={this.props.times}/>
-              <Paginator results={this.props.results} setPage={this.setPage.bind(this)} 
-                         currentPage={this.state.currentPage} pageSize={this.state.pageSize}/>
+                {resultsOrLoader}
+                 <Paginator results={this.props.results} setPage={this.setPage.bind(this)}
+                            currentPage={this.state.currentPage} pageSize={this.state.pageSize}/>
             </span>
         )
     }
