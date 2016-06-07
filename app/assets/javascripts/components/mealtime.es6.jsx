@@ -38,7 +38,7 @@ class Mealtime extends React.Component {
                     </li>
                 )
             });
-            
+
             return (
                 <ul className="collapsible" data-collapsible="accordion">
                     {times}

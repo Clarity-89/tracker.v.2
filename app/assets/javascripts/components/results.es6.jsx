@@ -8,6 +8,10 @@ class Results extends React.Component {
         super(props);
     }
 
+    componentDidMount() {
+        $('.collapsible').collapsible({});
+    }
+
     showMenu(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -16,8 +20,8 @@ class Results extends React.Component {
     }
 
     render() {
-        let {results} = this.props;
-        let data =  results.length ? results.map((el, i) => {
+        let { results } = this.props;
+        let data = results.length ? results.map((el, i) => {
             return <li key={i}>
                 <div className="collapsible-header">{el.fields.item_name}
                     <i className="material-icons dropdown-button" onClick={this.showMenu.bind(this)}>add</i>
