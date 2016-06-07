@@ -26,7 +26,6 @@ class Dashboard extends React.Component {
             selectMonths: true,
             selectYears: 15
         });
-        // $('.dropdown-button').dropdown({hover: true});
     }
 
     getData() {

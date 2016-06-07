@@ -16,7 +16,8 @@ class Results extends React.Component {
     }
 
     render() {
-        let results = this.props.results.length ? this.props.results.map((el, i) => {
+        let {results} = this.props;
+        let data =  results.length ? results.map((el, i) => {
             return <li key={i}>
                 <div className="collapsible-header">{el.fields.item_name}
                     <i className="material-icons dropdown-button" onClick={this.showMenu.bind(this)}>add</i>
@@ -24,7 +25,6 @@ class Results extends React.Component {
                 </div>
 
                 <div className="collapsible-body">
-
                     <p>Size (g): {el.fields.nf_serving_weight_grams} </p>
                     <p>Calories: {el.fields.nf_calories}</p>
                     <p>Protein: {el.fields.nf_protein}</p>
@@ -34,7 +34,7 @@ class Results extends React.Component {
             </li>
         }) : <p>No results yet</p>;
 
-        return <ul className="collapsible" data-collapsible="accordion">{results}</ul>
+        return <ul className="collapsible" data-collapsible="accordion">{data}</ul>
     }
 }
 
