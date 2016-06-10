@@ -13,20 +13,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    date = params[:date] || Date.today
     @user = User.find(params[:id])
-    @servings = current_user.servings.where(date: date)
-    joins = @servings.joins(:food)
-    @totals = {
-        cals: joins.sum(:calories),
-        protein: joins.sum(:protein),
-        carbs: joins.sum(:carbs),
-        fat: joins.sum(:fat)
-    }
-
-    if request.xhr?
-      render json: {servings: @servings, totals: @totals}
-    end
   end
 
   def create
