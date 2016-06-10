@@ -3,7 +3,7 @@
   <li><%= current_user.name %> </li>
   <li><%= current_user.email %></li>
 
-  <li><%= link_to "Profile", current_user %></li>
+  <li><%= link_to "Tracker", controller: "servings" %></li>
   <li><%= link_to "Settings", edit_user_path(current_user) %></li>
   <li><%= link_to "Log out", logout_path, method: "delete" %></li>
 </ul>
