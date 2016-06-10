@@ -20,7 +20,7 @@
 }
 
 #landing-title {
-  width: 50%;
+  min-width: 50%;
   &:not(.waves-effect .waves-light .btn) {
     text-shadow: 1px 1px #000;
   }
