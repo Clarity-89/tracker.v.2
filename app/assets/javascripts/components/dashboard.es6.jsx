@@ -2,7 +2,7 @@ class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            date: moment().format("YYYY-MM-DD"),
+            date: moment().format("D MMMM, YYYY"),
             results: [],
             searchValue: '',
             data: {},
