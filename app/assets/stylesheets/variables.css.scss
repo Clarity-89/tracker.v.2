@@ -31,7 +31,7 @@
   backface-visibility: $param;
 }
 
-@mixin box-shadow($params: 3px 6px 6px 6px #aaa) {
+@mixin box-shadow($params) {
   -moz-box-shadow: $params;
   -webkit-box-shadow: $params;
   box-shadow: $params;

@@ -29,16 +29,17 @@ class AddButton extends React.Component {
                     <ul>
                         <li><p className={this.isClicked('p')}>Breakfast</p>
                             <a className="btn-floating green">
-                                <i className="material-icons">format_quote</i>
+                                <i className="material-icons">free_breakfast</i>
                             </a>
                         </li>
                         <li><p className={this.isClicked('p')}>Lunch</p>
                             <a className="btn-floating yellow darken-1">
-                                <i className="material-icons">publish</i>
+                                <i><img className="material-icons" src="/assets/lunch.svg"/></i>
                             </a>
                         </li>
                         <li><p className={this.isClicked('p')}>Dinner</p>
-                            <a className="btn-floating blue"><i className="material-icons">attach_file</i>
+                            <a className="btn-floating blue">
+                                <i><img className="material-icons" src="/assets/dinner.svg"/></i>
                             </a>
                         </li>
                     </ul>
