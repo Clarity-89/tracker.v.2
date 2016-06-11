@@ -20,7 +20,7 @@ class Dashboard extends React.Component {
         $('.datepicker').pickadate({
             onClose: function (e) {
                 let date = this.get();
-                self.setState({ date: date });
+                self.setState({date: date});
                 self.getDailyServings(date);
                 $(document.activeElement).blur()
             },
@@ -30,8 +30,8 @@ class Dashboard extends React.Component {
     }
 
     getDailyServings(date) {
-        $.get('/serving', { date: date })
-            .done(response => this.setState({ data: response.data }))
+        $.get('/serving', {date: date})
+            .done(response => this.setState({data: response.data}))
             .fail(response => console.log("Error", response));
     }
 
@@ -45,6 +45,7 @@ class Dashboard extends React.Component {
                     <Summary total={total} macros={this.props.macros}/>
                     <Mealtime data={this.state.data.mealtimes} macros={this.props.macros} times={this.props.times}/>
                 </div>
+                <AddButton />
             </div>
         )
     }
