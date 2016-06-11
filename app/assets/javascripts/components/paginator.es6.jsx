@@ -30,7 +30,7 @@ class Paginator extends React.Component {
                     href="#!">{i + 1}</a>
                 </li>);
             }
-            return <ul className="pagination">
+            return <ul className="pagination col s12 m6 offset-m3">
                 <li className="waves-effect" onClick={this.pageBack.bind(this)}><a href="#!"><i
                     className="material-icons">chevron_left</i></a></li>
                 {indents}

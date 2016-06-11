@@ -20,25 +20,19 @@ class Results extends React.Component {
     }
 
     render() {
-        let { results } = this.props;
+        let {results} = this.props;
         let data = results.length ? results.map((el, i) => {
-            return <li key={i}>
-                <div className="collapsible-header">{el.fields.item_name}
-                    <i className="material-icons dropdown-button" onClick={this.showMenu.bind(this)}>add</i>
-                    <Dropdown times={this.props.times} add={this.props.add} meal={el}/>
-                </div>
-
-                <div className="collapsible-body">
-                    <p>Size (g): {el.fields.nf_serving_weight_grams} </p>
-                    <p>Calories: {el.fields.nf_calories}</p>
-                    <p>Protein: {el.fields.nf_protein}</p>
-                    <p>Carbohydrates: {el.fields.nf_total_carbohydrate}</p>
-                    <p>Fat: {el.fields.nf_total_fat}</p>
-                </div>
+            return <li key={i} className="collection-item">
+                {el.fields.item_name}
             </li>
-        }) : <p className="no-results">No results for your query</p>;
+        }) : <li className="no-results">No results for your query</li>;
 
-        return <ul className="collapsible" data-collapsible="accordion">{data}</ul>
+        return (
+            <ul className="collection with-header col s12 m6 offset-m3">
+                <li className="collection-header"><h4>Results</h4></li>
+                {data}
+            </ul>
+        )
     }
 }
 

@@ -1,7 +1,7 @@
 const Search = (props) => {
     return (
         <div className="row">
-            <div className="input-field">
+            <div className="input-field col s12 m6 offset-m3">
                 <div className="col s8">
                     <input id="search" type="search" value={props.value} onChange={props.changeHandler}
                            onKeyDown={props.keypress}/>
