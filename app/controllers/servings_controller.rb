@@ -1,12 +1,13 @@
 class ServingsController < ApplicationController
 
     MEALTIMES = %w(breakfast lunch dinner)
-    PROPS = %w(calories protein carbs fat)
+    PROPS = %w(protein carbs fat calories)
 
     def index
         servings = current_user.servings.includes(:food).where(date: params[:date])
         @data = construct_data(MEALTIMES, PROPS, servings)
-
+        @times = MEALTIMES
+        @macros = PROPS
         if request.xhr?
             render json: {data: @data}
         end
@@ -27,6 +28,8 @@ class ServingsController < ApplicationController
     end
 
     def find
+        @times = MEALTIMES
+        @macros = PROPS
         render 'servings/find'
     end
 
