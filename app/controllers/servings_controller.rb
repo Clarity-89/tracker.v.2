@@ -30,6 +30,7 @@ class ServingsController < ApplicationController
     def find
         @times = MEALTIMES
         @macros = PROPS
+        @time = params[:time] || 'breakfast'
         render 'servings/find'
     end
 

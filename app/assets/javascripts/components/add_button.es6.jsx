@@ -6,7 +6,7 @@ class AddButton extends React.Component {
         }
     }
 
-    clicked(e) {
+    clicked() {
         this.setState({clicked: !this.state.clicked});
     }
 
@@ -16,7 +16,10 @@ class AddButton extends React.Component {
         } else if (el === 'p') {
             return 'meal-title ' + (this.state.clicked ? 'active' : '');
         }
+    }
 
+    redirect(param) {
+        return window.location = '/serving/find?time=' + param;
     }
 
     render() {
@@ -28,17 +31,17 @@ class AddButton extends React.Component {
                     </a>
                     <ul>
                         <li><p className={this.isClicked('p')}>Breakfast</p>
-                            <a className="btn-floating green">
+                            <a className="btn-floating green" onClick={()=>{this.redirect('breakfast')}}>
                                 <i className="material-icons">free_breakfast</i>
                             </a>
                         </li>
                         <li><p className={this.isClicked('p')}>Lunch</p>
-                            <a className="btn-floating yellow darken-1">
+                            <a className="btn-floating yellow darken-1" onClick={()=>{this.redirect('lunch')}}>
                                 <i><img className="material-icons" src="/assets/lunch.svg"/></i>
                             </a>
                         </li>
                         <li><p className={this.isClicked('p')}>Dinner</p>
-                            <a className="btn-floating blue">
+                            <a className="btn-floating blue" onClick={()=>{this.redirect('dinner')}}>
                                 <i><img className="material-icons" src="/assets/dinner.svg"/></i>
                             </a>
                         </li>

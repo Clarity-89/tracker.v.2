@@ -8,6 +8,9 @@ class FoodSearch extends React.Component {
         }
     }
 
+    componentDidMount(){
+        console.log('time', this.props.time)
+    }
     getData() {
         this.setState({loading: true});
         let params = {
