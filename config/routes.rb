@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     post 'login' => 'sessions#create'
     delete 'logout' => 'sessions#destroy'
     get 'serving' => 'servings#index'
+    get 'serving/find' => 'servings#find'
     post 'serving/create' => 'servings#create'
     delete 'serving/delete' => 'servings#delete'
     resources :users
