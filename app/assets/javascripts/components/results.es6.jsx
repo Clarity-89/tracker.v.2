@@ -6,32 +6,36 @@
 class Results extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            modalOpen: false,
+            selected: {
+                fields: {}
+            }
+        }
     }
 
-    componentDidMount() {
-        $('.collapsible').collapsible({});
-    }
-
-    showMenu(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        $('.dropdown-content').hide();
-        $(ReactDOM.findDOMNode(e.currentTarget)).siblings('.dropdown-content').toggle();
+    selectProduct(product) {
+        console.log('got product', product)
+        this.setState({selected: product, modalOpen: true});
     }
 
     render() {
         let {results} = this.props;
         let data = results.length ? results.map((el, i) => {
-            return <li key={i} className="collection-item">
+            return <a href="#details" key={i} className="collection-item modal-trigger"
+                      onClick={()=>{this.selectProduct(el)}}>
                 {el.fields.item_name}
-            </li>
-        }) : <li className="no-results">No results for your query</li>;
-
+            </a>
+        }) : <p className="no-results">No results for your query</p>;
+        console.log('modal', this.state.modalOpen)
         return (
-            <ul className="collection with-header col s12 m6 offset-m3">
-                <li className="collection-header"><h4>Results</h4></li>
-                {data}
-            </ul>
+            <div>
+                <div className="collection with-header col s12 m6 offset-m3">
+                    <div className="collection-header"><h4>Results</h4></div>
+                    {data}
+                </div>
+                <FoodDetails open={this.state.modalOpen} product={this.state.selected.fields}/>
+            </div>
         )
     }
 }
