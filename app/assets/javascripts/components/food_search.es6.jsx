@@ -17,13 +17,13 @@ class FoodSearch extends React.Component {
         let params = {
             "appId": "13957b27",
             "appKey": "634647fd3fadbe686dbaacdbea287beb",
-            "fields": "item_name,nf_calories,nf_protein,nf_total_carbohydrate,nf_total_fat,nf_serving_weight_grams,nf_serving_size_unit,nf_serving_size_qty",
+            "fields": "item_name",
             results: '0:50'
         };
         $.get("https://api.nutritionix.com/v1_1/search/" + this.state.searchValue, params)
             .done(response => this.setState({
                 loading: false,
-                results: response.hits.filter(el => el.fields.nf_serving_weight_grams)
+                results: response.hits
             }))
             .error(response => {
                 this.setState({loading: false});
