@@ -7,16 +7,26 @@ class Results extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            modalOpen: false,
-            selected: {
-                fields: {}
-            }
+            selected: {},
+            loading: false
         }
     }
 
     selectProduct(product) {
-        console.log('got product', product)
-        this.setState({selected: product, modalOpen: true});
+        this.setState({loading: true});
+        let params = {
+            "appId": "13957b27",
+            "appKey": "634647fd3fadbe686dbaacdbea287beb"
+        };
+        $.get("https://api.nutritionix.com/v1_1/item/?id=" + product._id, params)
+            .done(response => this.setState({
+                loading: false,
+                selected: response
+            }))
+            .error(response => {
+                this.setState({loading: false});
+                console.log('error', response)
+            });
     }
 
     render() {
@@ -27,14 +37,14 @@ class Results extends React.Component {
                 {el.fields.item_name}
             </a>
         }) : <p className="no-results">No results for your query</p>;
-        console.log('modal', this.state.modalOpen)
+
         return (
             <div>
                 <div className="collection with-header col s12 m6 offset-m3">
                     <div className="collection-header"><h4>Results</h4></div>
                     {data}
                 </div>
-                <FoodDetails open={this.state.modalOpen} product={this.state.selected.fields}/>
+                <FoodDetails loading={this.state.loading} product={this.state.selected}/>
             </div>
         )
     }

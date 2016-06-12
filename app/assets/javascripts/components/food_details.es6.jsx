@@ -11,8 +11,8 @@ class FoodDetails extends React.Component {
     }
 
     render() {
-        let {open, product} = this.props;
-        console.log('pr', product)
+        let {product} = this.props;
+
         return (
             <div id="details" className="modal">
                 <div className="modal-content">
