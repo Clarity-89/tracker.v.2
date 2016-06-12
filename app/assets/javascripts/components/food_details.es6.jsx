@@ -12,17 +12,19 @@ class FoodDetails extends React.Component {
 
     render() {
         let {product, loading} = this.props;
+        let fields = filterFields(Object.keys(product)).map((field, i) => {
+            if (product[field])
+                return <div className="collection-item" key={i}><b>{formatField(field)}</b>: {product[field]}</div>
+        });
         let results = loading ? <Loader /> :
             <div className="modal-content">
                 <h4>{formatName(product)}</h4>
-                <p>Size (g): {product.nf_serving_weight_grams} </p>
-                <p>Calories: {product.nf_calories}</p>
-                <p>Protein: {product.nf_protein}</p>
-                <p>Carbohydrates: {product.nf_total_carbohydrate}</p>
-                <p>Fat: {product.nf_total_fat}</p>
+                <div className="collection">
+                    {fields}
+                </div>
             </div>;
         return (
-            <div id="details" className="modal">
+            <div id="details" className="modal modal-fixed-footer">
                 {results}
                 <div className="modal-footer">
                     <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat">Add</a>

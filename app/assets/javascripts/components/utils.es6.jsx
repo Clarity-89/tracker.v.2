@@ -25,3 +25,16 @@ const formatField = (field) => {
         return (cap(parts[0]) + ' ' + parts.slice(1).join(' ')).trim();
     }
 };
+
+const filterFields = (fields) => {
+    if (fields.length && Array.isArray(fields)) {
+        let filterOut = ['usda_fields', 'old_api_id', 'brand_id', 'nf_ingredient_statement', 'nf_refuse_pct',
+            'updated_at', 'item_name', 'item_id', 'leg_loc_id'];
+
+        return fields.filter(field => {
+            return filterOut.indexOf(field) < 0;
+        })
+    } else {
+        return [];
+    }
+};
