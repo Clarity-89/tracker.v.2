@@ -19,7 +19,7 @@ class PaginatedResults extends React.Component {
 
     render() {
         let resultsOrLoader = this.props.loading ? <Loader/> :
-            <Results results={this.paginate()} add={this.props.addEntry} times={this.props.times}/>;
+            <Results results={this.paginate()} add={this.props.addEntry} {...this.props}/>;
 
         return (
             <span className="row">

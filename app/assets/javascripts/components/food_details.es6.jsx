@@ -18,8 +18,10 @@ class FoodDetails extends React.Component {
         });
         let results = loading ? <Loader /> :
             <div className="modal-content">
-                <h4>{formatName(product)}</h4>
-                <Select times={this.props.times}/>
+                <div className="row">
+                    <div className="col s12 m6"><h4>{formatName(product)}</h4></div>
+                    <Select {...this.props}/>
+                </div>
                 <div className="collection">
                     {fields}
                 </div>

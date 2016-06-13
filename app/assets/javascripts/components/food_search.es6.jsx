@@ -8,12 +8,12 @@ class FoodSearch extends React.Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         console.log('time', this.props.time)
     }
-    
+
     getData() {
-        this.setState({loading: true});
+        this.setState({ loading: true });
         let params = {
             "appId": "13957b27",
             "appKey": "634647fd3fadbe686dbaacdbea287beb",
@@ -26,19 +26,19 @@ class FoodSearch extends React.Component {
                 results: response.hits
             }))
             .error(response => {
-                this.setState({loading: false});
+                this.setState({ loading: false });
                 console.log('error', response)
             });
     }
 
     setSearch(e) {
-        this.setState({searchValue: e.target.value})
+        this.setState({ searchValue: e.target.value })
     }
 
     addEntry(entry, time, e) {
         e.stopPropagation();
         e.preventDefault();
-        $.post('/serving/create', {entry: entry, date: this.state.date, time: time})
+        $.post('/serving/create', { entry: entry, date: this.state.date, time: time })
         // Update state to show new values immediately
             .done(() => {
                 let copy = Object.assign({}, this.state.data),
@@ -52,7 +52,7 @@ class FoodSearch extends React.Component {
                 copy.totals = sumProps(copy.totals, o);
                 copy.mealtimes[time].totals = sumProps(copy.mealtimes[time].totals, o);
                 copy.mealtimes[time].food.push(o);
-                this.setState({data: copy});
+                this.setState({ data: copy });
             })
             .fail(response => console.log('error', response));
     }
@@ -69,7 +69,7 @@ class FoodSearch extends React.Component {
                 <Search value={this.state.searchValue} changeHandler={this.setSearch.bind(this)}
                         clickHandler={this.getData.bind(this)} keypress={this.handleEnterPress.bind(this)}/>
                 <PaginatedResults addEntry={this.addEntry.bind(this)} results={this.state.results}
-                                  times={this.props.times} loading={this.state.loading}/>
+                    {...this.props} loading={this.state.loading}/>
             </div>
         )
     }
