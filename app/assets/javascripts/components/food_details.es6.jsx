@@ -4,14 +4,14 @@ class FoodDetails extends React.Component {
     }
 
     componentDidMount() {
-        $(document).ready(function () {
+        $(document).ready(function() {
             // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
             $('.modal-trigger').leanModal();
         });
     }
 
     render() {
-        let {product, loading} = this.props;
+        let { product, loading } = this.props;
         let fields = filterFields(Object.keys(product)).map((field, i) => {
             if (product[field])
                 return <div className="collection-item" key={i}><b>{formatField(field)}</b>: {product[field]}</div>
@@ -19,6 +19,7 @@ class FoodDetails extends React.Component {
         let results = loading ? <Loader /> :
             <div className="modal-content">
                 <h4>{formatName(product)}</h4>
+                <Select times={this.props.times}/>
                 <div className="collection">
                     {fields}
                 </div>

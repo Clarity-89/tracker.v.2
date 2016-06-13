@@ -13,7 +13,7 @@ class Results extends React.Component {
     }
 
     selectProduct(product) {
-        this.setState({loading: true});
+        this.setState({ loading: true });
         let params = {
             "appId": "13957b27",
             "appKey": "634647fd3fadbe686dbaacdbea287beb"
@@ -24,13 +24,13 @@ class Results extends React.Component {
                 selected: response
             }))
             .error(response => {
-                this.setState({loading: false});
-                console.log('error', response)
+                this.setState({ loading: false });
+                console.log('error', response);
             });
     }
 
     render() {
-        let {results} = this.props;
+        let { results } = this.props;
         let data = results.length ? results.map((el, i) => {
             return <a href="#details" key={i} className="collection-item modal-trigger"
                       onClick={()=>{this.selectProduct(el)}}>
@@ -44,7 +44,7 @@ class Results extends React.Component {
                     <div className="collection-header"><h4>Results</h4></div>
                     {data}
                 </div>
-                <FoodDetails loading={this.state.loading} product={this.state.selected}/>
+                <FoodDetails times={this.props.times} loading={this.state.loading} product={this.state.selected}/>
             </div>
         )
     }
