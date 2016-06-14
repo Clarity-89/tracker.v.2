@@ -36,24 +36,10 @@ class FoodSearch extends React.Component {
     }
 
     addEntry(entry, time, e) {
+        console.log(entry)
         e.stopPropagation();
         e.preventDefault();
-        $.post('/serving/create', { entry: entry, date: this.state.date, time: time })
-        // Update state to show new values immediately
-            .done(() => {
-                let copy = Object.assign({}, this.state.data),
-                    o = {
-                        name: entry.fields.item_name,
-                        calories: entry.fields.nf_calories,
-                        protein: entry.fields.nf_protein,
-                        carbs: entry.fields.nf_total_carbohydrate,
-                        fat: entry.fields.nf_total_fat
-                    };
-                copy.totals = sumProps(copy.totals, o);
-                copy.mealtimes[time].totals = sumProps(copy.mealtimes[time].totals, o);
-                copy.mealtimes[time].food.push(o);
-                this.setState({ data: copy });
-            })
+        $.post('/serving/create', { entry: entry, date: this.props.date, time: time })
             .fail(response => console.log('error', response));
     }
 

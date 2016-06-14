@@ -15,13 +15,14 @@ class ServingsController < ApplicationController
 
     def create
         fields = {
-            name: params[:entry][:fields][:item_name],
-            calories: params[:entry][:fields][:nf_calories],
-            protein: params[:entry][:fields][:nf_protein],
-            carbs: params[:entry][:fields][:nf_total_carbohydrate],
-            fat: params[:entry][:fields][:nf_total_fat],
-            serving_size: params[:entry][:fields][:nf_serving_weight_grams]
+            name: params[:entry][:item_name],
+            calories: params[:entry][:nf_calories],
+            protein: params[:entry][:nf_protein],
+            carbs: params[:entry][:nf_total_carbohydrate],
+            fat: params[:entry][:nf_total_fat],
+            serving_size: params[:entry][:nf_serving_weight_grams]
         }
+
         food = Food.find_or_create_by(fields)
         Serving.create(food_id: food.id, user_id: current_user.id, type: params[:time], date: params[:date])
 
@@ -31,6 +32,7 @@ class ServingsController < ApplicationController
         @times = MEALTIMES
         @macros = PROPS
         @time = params[:time] || 'breakfast'
+        @date = params[:date] || Date.today
         render 'servings/find'
     end
 

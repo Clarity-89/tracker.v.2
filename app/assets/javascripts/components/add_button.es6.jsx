@@ -7,7 +7,7 @@ class AddButton extends React.Component {
     }
 
     clicked() {
-        this.setState({clicked: !this.state.clicked});
+        this.setState({ clicked: !this.state.clicked });
     }
 
     isClicked(el) {
@@ -19,7 +19,7 @@ class AddButton extends React.Component {
     }
 
     redirect(param) {
-        return window.location = '/serving/find?time=' + param;
+        return window.location = '/serving/find?time=' + param + '&date=' + this.props.date;
     }
 
     render() {

@@ -5,6 +5,7 @@ class Mealtime extends React.Component {
 
     // Manually toggle collapsible on click
     click(e) {
+        console.log('e',ReactDOM.findDOMNode(e.currentTarget) )
         $(ReactDOM.findDOMNode(e.currentTarget)).siblings('.collapsible-body').toggle()
     }
 
