@@ -1,6 +1,9 @@
 class FoodDetails extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            selected: props.time
+        }
     }
 
     componentDidMount() {
@@ -8,6 +11,10 @@ class FoodDetails extends React.Component {
             // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
             $('.modal-trigger').leanModal();
         });
+    }
+
+    select(el) {
+        this.setState({ selected: el });
     }
 
     render() {
@@ -20,7 +27,7 @@ class FoodDetails extends React.Component {
             <div className="modal-content">
                 <div className="row">
                     <div className="col s12 m6"><h4>{formatName(product)}</h4></div>
-                    <Select {...this.props}/>
+                    <Select {...this.props} selected={this.state.selected} select={this.select.bind(this)}/>
                 </div>
                 <div className="collection">
                     {fields}
@@ -30,7 +37,8 @@ class FoodDetails extends React.Component {
             <div id="details" className="modal modal-fixed-footer">
                 {results}
                 <div className="modal-footer">
-                    <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat">Add</a>
+                    <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat"
+                       onClick={ (e)=>{this.props.addEntry(product, this.state.selected, e)}}>Add</a>
                     <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
                 </div>
             </div>
