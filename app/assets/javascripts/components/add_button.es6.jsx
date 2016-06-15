@@ -24,7 +24,7 @@ class AddButton extends React.Component {
 
     render() {
         return (
-            <div className={this.isClicked('div')}>
+            <div>
                 <div className="fixed-action-btn vertical click-to-toggle" id="add-food">
                     <a className="btn-floating btn-large red" onClick={this.clicked.bind(this)}>
                         <i className="material-icons">add</i>
@@ -47,6 +47,7 @@ class AddButton extends React.Component {
                         </li>
                     </ul>
                 </div>
+                <div className={this.isClicked('div')}></div>
             </div>
         )
     }

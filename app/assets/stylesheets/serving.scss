@@ -44,6 +44,7 @@
 
 .cover {
   position: absolute;
+  display: none;
   top: 0;
   left: 0;
   width: 100%;
@@ -51,5 +52,6 @@
   @include transition(.3s);
   &.active {
     background-color: rgba(0, 0, 0, 0.56);
+    display: block;
   }
 }
