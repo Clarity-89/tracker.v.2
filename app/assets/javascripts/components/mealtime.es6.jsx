@@ -55,11 +55,11 @@ const Product = (props) => {
     let result = props.food.map((el, i) => {
         return (
             <div className="row" key={i}>
-                <span className="col s3">{formatName(el.name)}</span>
-                <span className="col s2">{el.protein}</span>
-                <span className="col s2">{el.carbs}</span>
-                <span className="col s2">{el.fat}</span>
-                <span className="col s2">{el.calories}</span>
+                <p className="col s3">{formatName(el.name)}</p>
+                <p className="col s2">{el.protein}</p>
+                <p className="col s2">{el.carbs}</p>
+                <p className="col s2">{el.fat}</p>
+                <p className="col s2">{el.calories}</p>
             </div>
         )
     });
