@@ -26,7 +26,7 @@ class FoodDetails extends React.Component {
         let results = loading ? <Loader /> :
             <div className="modal-content">
                 <div className="row">
-                    <div className="col s12 m6"><h4>{formatName(product)}</h4></div>
+                    <div className="col s12 m6"><h4>{formatName(product.item_name)}</h4></div>
                     <Select {...this.props} selected={this.state.selected} select={this.select.bind(this)}/>
                 </div>
                 <div className="collection">

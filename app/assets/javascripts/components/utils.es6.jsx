@@ -15,8 +15,8 @@ const cap = (word) => {
 };
 
 /* API fields formatters */
-const formatName = (item) => {
-    if (item.item_name) return item.item_name.split(' - ')[0];
+const formatName = (name) => {
+    if (name) return name.split(' - ')[0];
 };
 
 const formatField = (field) => {
