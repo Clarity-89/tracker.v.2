@@ -17,11 +17,22 @@ class FoodDetails extends React.Component {
         this.setState({ selected: el });
     }
 
+    highlight(name) {
+        if (this.props.macros.indexOf(name.toLowerCase()) > -1) {
+            return "collection-item highlighted";
+        } else {
+            return "collection-item";
+        }
+
+    }
+
     render() {
         let { product, loading } = this.props;
         let fields = filterFields(Object.keys(product)).map((field, i) => {
-            if (product[field])
-                return <div className="collection-item" key={i}><b>{formatField(field)}</b>: {product[field]}</div>
+            if (product[field]) {
+                let formatted = formatField(field);
+                return <div className={this.highlight(formatted)} key={i}><b>{formatted}</b>: {product[field]}</div>
+            }
         });
         let results = loading ? <Loader /> :
             <div className="modal-content">

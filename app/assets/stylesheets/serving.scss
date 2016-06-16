@@ -1,7 +1,6 @@
 // Place all the styles related to the Serving controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
 @import "variables";
 
 .title {
@@ -54,4 +53,8 @@
     background-color: rgba(0, 0, 0, 0.56);
     display: block;
   }
+}
+
+.collection .collection-item.highlighted {
+  background: #ede7f6;
 }

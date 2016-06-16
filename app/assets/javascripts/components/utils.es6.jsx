@@ -22,7 +22,8 @@ const formatName = (name) => {
 const formatField = (field) => {
     if (field) {
         let parts = field.replace(/nf_|total_|item_/g, '').split('_');
-        return (cap(parts[0]) + ' ' + parts.slice(1).join(' ')).trim();
+        let result = (cap(parts[0]) + ' ' + parts.slice(1).join(' ')).trim();
+        return result === 'Carbohydrate' ? 'Carbs' : result;
     }
 };
 
