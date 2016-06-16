@@ -1,11 +1,33 @@
 class Mealtime extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            selected: {},
+            loading: false
+        }
     }
 
     // Manually toggle collapsible on click
     click(e) {
         $(ReactDOM.findDOMNode(e.currentTarget)).siblings('.collapsible-body').toggle();
+    }
+
+    selectProduct(product) {
+        console.log('pd', product)
+        this.setState({ loading: true });
+        let params = {
+            "appId": "13957b27",
+            "appKey": "634647fd3fadbe686dbaacdbea287beb"
+        };
+        $.get("https://api.nutritionix.com/v1_1/item/?id=" + product._id, params)
+            .done(response => this.setState({
+                loading: false,
+                selected: response
+            }))
+            .error(response => {
+                this.setState({ loading: false });
+                console.log('error', response);
+            });
     }
 
     render() {
@@ -33,16 +55,20 @@ class Mealtime extends React.Component {
                             </div>
                         </div>
                         <div className="collapsible-body">
-                            <Product food={this.props.data[time]['food']} {...this.props}/>
+                            <Product food={this.props.data[time]['food']} {...this.props}
+                                     select={this.selectProduct.bind(this)}/>
                         </div>
                     </li>
                 )
             });
 
             return (
-                <ul className="collapsible" data-collapsible="accordion">
-                    {times}
-                </ul>
+                <div>
+                    <ul className="collapsible" data-collapsible="accordion">
+                        {times}
+                    </ul>
+                    <FoodDetails {...this.props} loading={this.state.loading} product={this.state.selected}/>
+                </div>
             )
         } else {
             return false;
@@ -55,7 +81,7 @@ const Product = (props) => {
     let result = props.food.map((el, i) => {
         return (
             <div className="row" key={i}>
-                <p className="col s3">{formatName(el.name)}</p>
+                <p className="col s3 modal-trigger" onClick={()=>{props.select(el)}}>{formatName(el.name)}</p>
                 <p className="col s2">{el.protein}</p>
                 <p className="col s2">{el.carbs}</p>
                 <p className="col s2">{el.fat}</p>

@@ -49,11 +49,3 @@ class Results extends React.Component {
         )
     }
 }
-
-const Dropdown = (props) => {
-    let menu = props.times.map((el, i) => {
-        return <li key={i}><a href="#" onClick={(e) => props.add(props.meal, el, e)}>{cap(el)}</a></li>
-    });
-
-    return <ul className='dropdown-content'>{menu}</ul>
-};
