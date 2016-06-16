@@ -36,11 +36,16 @@ class FoodSearch extends React.Component {
     }
 
     addEntry(entry, time, e) {
-        console.log(entry)
         e.stopPropagation();
         e.preventDefault();
         $.post('/serving/create', { entry: entry, date: this.props.date, time: time })
-            .fail(response => console.log('error', response));
+            .done(()=> {
+                Materialize.toast('Successfully added product', 2000);
+            })
+            .fail(response => {
+                Materialize.toast('Failed to add product', 2000);
+                console.log('error', response);
+            });
     }
 
     handleEnterPress(e) {
