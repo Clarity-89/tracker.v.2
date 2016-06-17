@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20160616071250) do
     t.float    "serving_size"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.integer  "_id"
+    t.string   "_id"
   end
 
   create_table "servings", force: :cascade do |t|

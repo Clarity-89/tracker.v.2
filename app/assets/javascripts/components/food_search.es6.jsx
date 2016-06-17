@@ -38,6 +38,7 @@ class FoodSearch extends React.Component {
     addEntry(entry, time, e) {
         e.stopPropagation();
         e.preventDefault();
+        console.log('entry', entry)
         $.post('/serving/create', { entry: entry, date: this.props.date, time: time })
             .done(()=> {
                 Materialize.toast('Successfully added product', 2000);

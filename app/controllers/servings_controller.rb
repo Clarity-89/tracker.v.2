@@ -14,6 +14,7 @@ class ServingsController < ApplicationController
     end
 
     def create
+        puts 'id', params[:entry][:item_id]
         fields = {
             _id: params[:entry][:item_id],
             name: params[:entry][:item_name],

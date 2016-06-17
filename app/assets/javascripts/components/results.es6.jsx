@@ -31,6 +31,7 @@ class Results extends React.Component {
 
     render() {
         let { paginated } = this.props;
+        console.log('page', paginated)
         let data = paginated.length ? paginated.map((el, i) => {
             return <a href="#details" key={i} className="collection-item modal-trigger"
                       onClick={()=>{this.selectProduct(el)}}>
