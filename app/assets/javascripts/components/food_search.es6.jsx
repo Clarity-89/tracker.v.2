@@ -18,9 +18,9 @@ class FoodSearch extends React.Component {
             "appId": "13957b27",
             "appKey": "634647fd3fadbe686dbaacdbea287beb",
             "fields": "item_name",
-            results: '0:50'
+            "results": '0:50'
         };
-        $.get("https://api.nutritionix.com/v1_1/search/" + this.state.searchValue, params)
+        $.get(`https://api.nutritionix.com/v1_1/search/${this.state.searchValue}`, params)
             .done(response => this.setState({
                 loading: false,
                 results: response.hits
@@ -38,7 +38,6 @@ class FoodSearch extends React.Component {
     addEntry(entry, time, e) {
         e.stopPropagation();
         e.preventDefault();
-        console.log('entry', entry)
         $.post('/serving/create', { entry: entry, date: this.props.date, time: time })
             .done(()=> {
                 Materialize.toast('Successfully added product', 2000);

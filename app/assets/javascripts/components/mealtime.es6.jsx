@@ -13,13 +13,12 @@ class Mealtime extends React.Component {
     }
 
     selectProduct(product) {
-        console.log('pd', product)
         this.setState({ loading: true });
         let params = {
             "appId": "13957b27",
             "appKey": "634647fd3fadbe686dbaacdbea287beb"
         };
-        $.get("https://api.nutritionix.com/v1_1/item/?id=" + product._id, params)
+        $.get(`https://api.nutritionix.com/v1_1/item/?id=${product._id}`, params)
             .done(response => this.setState({
                 loading: false,
                 selected: response
@@ -31,7 +30,6 @@ class Mealtime extends React.Component {
     }
 
     render() {
-
         if (this.props.data) {
             let times = this.props.times.map((time, i1)=> {
 
@@ -81,7 +79,7 @@ const Product = (props) => {
     let result = props.food.map((el, i) => {
         return (
             <div className="row" key={i}>
-                <p className="col s3 modal-trigger" onClick={()=>{props.select(el)}}>{formatName(el.name)}</p>
+                <a href="#details" className="col s3 modal-trigger" onClick={()=>{props.select(el)}}>{formatName(el.name)}</a>
                 <p className="col s2">{el.protein}</p>
                 <p className="col s2">{el.carbs}</p>
                 <p className="col s2">{el.fat}</p>

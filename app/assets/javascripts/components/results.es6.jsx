@@ -18,7 +18,7 @@ class Results extends React.Component {
             "appId": "13957b27",
             "appKey": "634647fd3fadbe686dbaacdbea287beb"
         };
-        $.get("https://api.nutritionix.com/v1_1/item/?id=" + product._id, params)
+        $.get(`https://api.nutritionix.com/v1_1/item/?id=${product._id}`, params)
             .done(response => this.setState({
                 loading: false,
                 selected: response
@@ -31,7 +31,6 @@ class Results extends React.Component {
 
     render() {
         let { paginated } = this.props;
-        console.log('page', paginated)
         let data = paginated.length ? paginated.map((el, i) => {
             return <a href="#details" key={i} className="collection-item modal-trigger"
                       onClick={()=>{this.selectProduct(el)}}>
