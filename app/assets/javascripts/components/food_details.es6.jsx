@@ -38,7 +38,11 @@ class FoodDetails extends React.Component {
             <div className="modal-content">
                 <div className="row">
                     <div className="col s12 m6"><h4>{formatName(product.item_name)}</h4></div>
-                    <Select {...this.props} selected={this.state.selected} select={this.select.bind(this)}/>
+                    {(() =>{
+                        if(this.props.addView){
+                           return <Select {...this.props} selected={this.state.selected} select={this.select.bind(this)}/>
+                        }
+                    })()}
                 </div>
                 <div className="collection">
                     {fields}

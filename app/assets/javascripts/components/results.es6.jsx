@@ -44,7 +44,7 @@ class Results extends React.Component {
                     <div className="collection-header"><h4>Results</h4></div>
                     {data}
                 </div>
-                <FoodDetails {...this.props} loading={this.state.loading} product={this.state.selected}/>
+                <FoodDetails {...this.props} loading={this.state.loading} product={this.state.selected} addView={true}/>
             </div>
         )
     }
