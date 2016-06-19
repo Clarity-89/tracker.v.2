@@ -7,14 +7,14 @@ class FoodDetails extends React.Component {
     }
 
     componentDidMount() {
-        $(document).ready(function() {
+        $(document).ready(function () {
             // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
             $('.modal-trigger').leanModal();
         });
     }
 
     select(el) {
-        this.setState({ selected: el });
+        this.setState({selected: el});
     }
 
     highlight(name) {
@@ -27,7 +27,7 @@ class FoodDetails extends React.Component {
     }
 
     render() {
-        let { product, loading } = this.props;
+        let {product, loading, addView} = this.props;
         let fields = filterFields(Object.keys(product)).map((field, i) => {
             if (product[field]) {
                 let formatted = formatField(field);
@@ -38,9 +38,10 @@ class FoodDetails extends React.Component {
             <div className="modal-content">
                 <div className="row">
                     <div className="col s12 m6"><h4>{formatName(product.item_name)}</h4></div>
-                    {(() =>{
-                        if(this.props.addView){
-                           return <Select {...this.props} selected={this.state.selected} select={this.select.bind(this)}/>
+                    {(() => {
+                        if (addView) {
+                            return <Select {...this.props} selected={this.state.selected}
+                                                           select={this.select.bind(this)}/>
                         }
                     })()}
                 </div>
@@ -48,12 +49,13 @@ class FoodDetails extends React.Component {
                     {fields}
                 </div>
             </div>;
+        let buttonTitle = addView ? 'Add' : 'Remove';
         return (
             <div id="details" className="modal modal-fixed-footer">
                 {results}
                 <div className="modal-footer">
                     <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat"
-                       onClick={ (e)=>{this.props.addEntry(product, this.state.selected, e)}}>Add</a>
+                       onClick={ (e)=>{this.props.handler(product, this.state.selected, e)}}>{buttonTitle}</a>
                     <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
                 </div>
             </div>
