@@ -55,6 +55,8 @@ class Mealtime extends React.Component {
                         <div className="collapsible-body">
                             <Product food={this.props.data[time]['food']} {...this.props}
                                      select={this.selectProduct.bind(this)}/>
+                            <FoodDetails {...this.props} handler={this.props.removeEntry} loading={this.state.loading}
+                                                         time={time} product={this.state.selected}/>
                         </div>
                     </li>
                 )
@@ -65,7 +67,7 @@ class Mealtime extends React.Component {
                     <ul className="collapsible" data-collapsible="accordion">
                         {times}
                     </ul>
-                    <FoodDetails {...this.props} loading={this.state.loading} product={this.state.selected}/>
+
                 </div>
             )
         } else {
@@ -79,7 +81,8 @@ const Product = (props) => {
     let result = props.food.map((el, i) => {
         return (
             <div className="row" key={i}>
-                <a href="#details" className="col s3 modal-trigger" onClick={()=>{props.select(el)}}>{formatName(el.name)}</a>
+                <a href="#details" className="col s3 modal-trigger"
+                   onClick={()=>{props.select(el)}}>{formatName(el.name)}</a>
                 <p className="col s2">{el.protein}</p>
                 <p className="col s2">{el.carbs}</p>
                 <p className="col s2">{el.fat}</p>

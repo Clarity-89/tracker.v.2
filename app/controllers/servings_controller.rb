@@ -9,7 +9,7 @@ class ServingsController < ApplicationController
         @times = MEALTIMES
         @macros = PROPS
         if request.xhr?
-            render json: {data: @data}
+            render json: { data: @data }
         end
     end
 
@@ -38,12 +38,17 @@ class ServingsController < ApplicationController
         render 'servings/find'
     end
 
+    def delete
+        food = Food.find(_id: params[:id]).first()
+        current_user.servings.where(date: params[:date], type: params[:type]).first().delete(food)
+    end
+
     private
 
     def construct_data(meals, props, servings)
-        result = {totals: {}, mealtimes: {}}
+        result = { totals: {}, mealtimes: {} }
         meals.each do |meal|
-            result[:mealtimes][meal] = {totals: {}, food: []}
+            result[:mealtimes][meal] = { totals: {}, food: [] }
             props.each do |prop|
                 s = servings.where(type: meal)
                 result[:mealtimes][meal][:totals][prop] = s.sum(prop)

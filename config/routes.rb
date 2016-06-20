@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     get 'serving' => 'servings#index'
     get 'serving/find' => 'servings#find'
     post 'serving/create' => 'servings#create'
-    delete 'serving/delete' => 'servings#delete'
+    post 'serving/delete' => 'servings#delete'
     resources :users
     resources :account_activations, only: [:edit]
     resources :password_resets, only: [:new, :create, :edit, :update]

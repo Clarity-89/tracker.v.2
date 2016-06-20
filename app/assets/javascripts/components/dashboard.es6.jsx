@@ -35,6 +35,13 @@ class Dashboard extends React.Component {
             .fail(response => console.log("Error", response));
     }
 
+    removeEntry(product, time, e) {
+        console.log('removing', product, time)
+        $.post('/serving/delete', { date: this.state.date, id: product.item_id, time: time })
+            .done(response=>console.log('deleted success', response))
+            .fail(response=>console.log('error deleting', response));
+    }
+
     render() {
         let total = this.state.data.totals || {};
         //console.log(this.state.data)
@@ -43,7 +50,9 @@ class Dashboard extends React.Component {
                 <div className="col s12 m8 offset-m2">
                     <Datepicker date={this.state.date} setDate={this.setDate.bind(this)}/>
                     <Summary total={total} macros={this.props.macros}/>
-                    <Mealtime data={this.state.data.mealtimes} macros={this.props.macros} times={this.props.times}/>
+                    <Mealtime data={this.state.data.mealtimes} macros={this.props.macros}
+                              removeEntry={this.removeEntry.bind(this)}
+                              times={this.props.times}/>
                 </div>
                 <AddButton date={this.state.date}/>
             </div>
