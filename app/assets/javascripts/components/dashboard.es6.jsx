@@ -35,11 +35,14 @@ class Dashboard extends React.Component {
             .fail(response => console.log("Error", response));
     }
 
-    removeEntry(product, time, e) {
-        console.log('removing', product, time)
-        $.post('/serving/delete', { date: this.state.date, id: product.item_id, time: time })
-            .done(response=>console.log('deleted success', response))
-            .fail(response=>console.log('error deleting', response));
+    removeEntry(product) {
+        $.ajax({
+            url: '/serving/delete',
+            method: 'DELETE',
+            data: { id: product.id }
+        })
+            .done(response=>Materialize.toast('Successfully deleted product', 1000))
+            .fail(response=>Materialize.toast('Failed to remove product. Please try again later.', 2000));
     }
 
     render() {

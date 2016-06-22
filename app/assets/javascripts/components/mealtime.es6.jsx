@@ -19,10 +19,14 @@ class Mealtime extends React.Component {
             "appKey": "634647fd3fadbe686dbaacdbea287beb"
         };
         $.get(`https://api.nutritionix.com/v1_1/item/?id=${product._id}`, params)
-            .done(response => this.setState({
-                loading: false,
-                selected: response
-            }))
+            .done(response => {
+                let selected = response;
+                selected.id = product.id;
+                this.setState({
+                    loading: false,
+                    selected: selected
+                })
+            })
             .error(response => {
                 this.setState({ loading: false });
                 console.log('error', response);

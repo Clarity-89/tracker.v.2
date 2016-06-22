@@ -14,7 +14,6 @@ class ServingsController < ApplicationController
     end
 
     def create
-        puts 'id', params[:entry][:item_id]
         fields = {
             _id: params[:entry][:item_id],
             name: params[:entry][:item_name],
@@ -39,8 +38,9 @@ class ServingsController < ApplicationController
     end
 
     def delete
-        food = Food.find(_id: params[:id]).first()
-        current_user.servings.where(date: params[:date], type: params[:type]).first().delete(food)
+        current_user.foods.delete(Food.find(params[:id]))
+
+        render json: {response: 'Success'}
     end
 
     private

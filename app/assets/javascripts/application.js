@@ -11,18 +11,19 @@
 // about supported directives.
 //
 //= require turbolinks
-// = require react
+//= require jquery
+//= require jquery_ujs 
+//= require react
 //= require components
 //= require react_ujs
 //= require_tree .
-//= require jquery
-//= require jquery_ujs 
+
 //= require materialize-sprockets
 
-$(document).ready(function () {
+$(document).ready(function() {
     // Initialize collapse button
     $(".button-collapse").sideNav();
-    $('body').on('click', function () {
+    $('body').on('click', function() {
         $('.dropdown-content').hide();
     });
 });
