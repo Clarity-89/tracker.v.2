@@ -8,10 +8,6 @@ class FoodSearch extends React.Component {
         }
     }
 
-    componentDidMount() {
-        console.log('time', this.props.time)
-    }
-
     getData() {
         this.setState({ loading: true });
         let params = {
@@ -27,7 +23,8 @@ class FoodSearch extends React.Component {
             }))
             .error(response => {
                 this.setState({ loading: false });
-                console.log('error', response)
+                console.log('error', response);
+                Materialize.toast('Could not get data. Please try again later', 2000);
             });
     }
 
