@@ -27,7 +27,7 @@ class Dashboard extends React.Component {
     getDailyServings(date) {
         $.get('/serving', { date: date })
             .done(response => this.setState({ data: response.data }))
-            .fail(response => console.log("Error", response));
+            .fail(response => Materialize.toast('Failed to retrieve data. Please try again later.', 2000));
     }
 
     // Remove product from user's servings
