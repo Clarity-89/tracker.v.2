@@ -39,8 +39,10 @@ class ServingsController < ApplicationController
 
     def delete
         current_user.foods.delete(Food.find(params[:id]))
+        servings = current_user.servings.includes(:food).where(date: params[:date])
+        @data = construct_data(MEALTIMES, PROPS, servings)
 
-        render json: {response: 'Success'}
+        render json: {response: 'Success', data: @data}
     end
 
     private
