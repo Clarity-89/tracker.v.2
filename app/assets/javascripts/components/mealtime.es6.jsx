@@ -26,6 +26,7 @@ class Mealtime extends React.Component {
                     loading: false,
                     selected: selected
                 })
+                console.log(this.state.selected)
             })
             .error(response => {
                 this.setState({ loading: false });
@@ -80,20 +81,28 @@ class Mealtime extends React.Component {
     }
 }
 
-const Product = (props) => {
+class Product extends React.Component {
 
-    let result = props.food.map((el, i) => {
-        return (
-            <div className="row" key={i}>
-                <a href="#details" className="col s3 modal-trigger"
-                   onClick={()=>{props.select(el)}}>{formatName(el.name)}</a>
-                <p className="col s2">{el.protein}</p>
-                <p className="col s2">{el.carbs}</p>
-                <p className="col s2">{el.fat}</p>
-                <p className="col s2">{el.calories}</p>
-            </div>
-        )
-    });
+    componentDidMount() {
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal-trigger').leanModal();
+    }
 
-    return <span>{result}</span>;
-};
+    render() {
+        let { food, select } = this.props;
+        let result = food.map((el, i) => {
+            return (
+                <div className="row" key={i}>
+                    <a href="#details" className="col s3 modal-trigger"
+                       onClick={()=>{select(el)}}>{formatName(el.name)}</a>
+                    <p className="col s2">{el.protein}</p>
+                    <p className="col s2">{el.carbs}</p>
+                    <p className="col s2">{el.fat}</p>
+                    <p className="col s2">{el.calories}</p>
+                </div>
+            )
+        });
+
+        return <span>{result}</span>;
+    }
+}

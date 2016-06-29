@@ -37,3 +37,11 @@ const filterFields = (fields) => {
         return [];
     }
 };
+
+/* Save params to history API */
+const saveToHistory = (params = {})=> {
+    let str = Object.keys(params).map((key, i) => {
+        return i === 0 ? '?' : '&' + key + '=' + params[key];
+    }).join('');
+    window.history.pushState(params, 'title', str);
+};
