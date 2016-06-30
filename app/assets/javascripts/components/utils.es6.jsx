@@ -45,3 +45,9 @@ const saveToHistory = (params = {})=> {
     }).join('');
     window.history.pushState(params, 'title', str);
 };
+
+/* Retrieve date param from url, assuming date is the last param */
+const dateFromURL = (url) => {
+    let str = url.split('date=');
+    return decodeURIComponent(str[str.length - 1]);
+};
