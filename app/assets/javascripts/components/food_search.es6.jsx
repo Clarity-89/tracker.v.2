@@ -54,7 +54,7 @@ class FoodSearch extends React.Component {
     render() {
         return (
             <div className="col s12 m6">
-                <a href={'/serving/' + window.location.search} className="btn btn-flat">Back to tracker</a>
+                <a href={'/serving/' + window.location.search} className="waves-effect waves-orange btn-flat">Back to tracker</a>
                 <Search value={this.state.searchValue} changeHandler={this.setSearch.bind(this)}
                         clickHandler={this.getData.bind(this)} keypress={this.handleEnterPress.bind(this)}/>
                 <PaginatedResults addEntry={this.addEntry.bind(this)} results={this.state.results}
