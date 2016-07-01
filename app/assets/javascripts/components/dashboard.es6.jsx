@@ -10,7 +10,11 @@ class Dashboard extends React.Component {
 
     componentDidMount() {
         let self = this;
-        this.getDailyServings(this.state.date);
+        let date = dateFromURL(window.location.search);
+
+        if (date) this.setState({ date: date });
+        this.getDailyServings(date || this.state.date);
+
         $('.datepicker').pickadate({
             onClose: function(e) {
                 let date = this.get();
@@ -21,9 +25,6 @@ class Dashboard extends React.Component {
             selectMonths: true,
             selectYears: 15
         });
-
-        let date = dateFromURL(window.location.search);
-        if (date) this.setState({ date: date });
     }
 
     // Get user's servings for a particular day
