@@ -13,7 +13,7 @@ class Mealtime extends React.Component {
     }
 
     selectProduct(product) {
-        this.setState({ loading: true });
+        this.setState({loading: true});
         let params = {
             "appId": "13957b27",
             "appKey": "634647fd3fadbe686dbaacdbea287beb"
@@ -29,7 +29,7 @@ class Mealtime extends React.Component {
                 console.log(this.state.selected)
             })
             .error(response => {
-                this.setState({ loading: false });
+                this.setState({loading: false});
                 console.log('error', response);
             });
     }
@@ -45,16 +45,14 @@ class Mealtime extends React.Component {
                                 <span className="col s3">
                                     {cap(time)}
                                 </span>
-                                {
-                                    this.props.macros.map((macro, i2) => {
+                                {this.props.macros.map((macro, i2) => {
 
-                                        return (
-                                            <span className="col s2" key={i2}>
+                                    return (
+                                        <span className="col s2" key={i2}>
                                                 {this.props.data[time]['totals'][macro]}
                                             </span>
-                                        )
-                                    })
-                                }
+                                    )
+                                })}
                             </div>
                         </div>
                         <div className="collapsible-body">
@@ -89,7 +87,7 @@ class Product extends React.Component {
     }
 
     render() {
-        let { food, select } = this.props;
+        let {food, select} = this.props;
         let result = food.map((el, i) => {
             return (
                 <div className="row" key={i}>
