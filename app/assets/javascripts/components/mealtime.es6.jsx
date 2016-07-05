@@ -98,7 +98,7 @@ class Product extends React.Component {
         let result = food.map((el, i) => {
             return (
                 <div className="row hold-menu" key={i}>
-                    <div className="mask"></div>
+                    <div className="mask"><i className="material-icons">delete</i></div>
                     <a href="#details" className="col s3 modal-trigger"
                        onClick={()=>{select(el)}}>{formatName(el.name)}</a>
                     <p className="col s2">{el.protein}</p>

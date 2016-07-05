@@ -67,6 +67,10 @@
 .hold-menu {
   position: relative;
 
+  &.active > .mask {
+    display: block;
+  }
+
   .mask {
     background-color: rgba(128, 128, 128, 0.9);
     display: none;
@@ -75,9 +79,14 @@
     top: -10px;
     height: 160%;
     width: 100%;
+
+    .material-icons {
+      color: #fff;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: 32px;
+    }
   }
 }
 
-.hold-menu.active > .mask {
-  display: block;
-}
