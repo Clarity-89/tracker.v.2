@@ -7,31 +7,38 @@ class Mealtime extends React.Component {
         }
     }
 
+    componentDidMount() {
+        interact('.hold-menu').on('hold', function(event) {
+            console.log('holding', event.currentTarget)
+            event.currentTarget.classList.toggle('active');
+        })
+    }
+
     // Manually toggle collapsible on click
     click(e) {
         $(ReactDOM.findDOMNode(e.currentTarget)).siblings('.collapsible-body').toggle();
     }
 
     selectProduct(product) {
-        this.setState({loading: true});
+        this.setState({ loading: true });
         let params = {
             "appId": "13957b27",
             "appKey": "634647fd3fadbe686dbaacdbea287beb"
         };
         $.get(`https://api.nutritionix.com/v1_1/item/?id=${product._id}`, params)
-            .done(response => {
-                let selected = response;
-                selected.id = product.id;
-                this.setState({
-                    loading: false,
-                    selected: selected
-                })
-                console.log(this.state.selected)
-            })
-            .error(response => {
-                this.setState({loading: false});
-                console.log('error', response);
-            });
+         .done(response => {
+             let selected = response;
+             selected.id = product.id;
+             this.setState({
+                 loading: false,
+                 selected: selected
+             })
+             console.log(this.state.selected)
+         })
+         .error(response => {
+             this.setState({ loading: false });
+             console.log('error', response);
+         });
     }
 
     render() {
@@ -87,10 +94,11 @@ class Product extends React.Component {
     }
 
     render() {
-        let {food, select} = this.props;
+        let { food, select } = this.props;
         let result = food.map((el, i) => {
             return (
-                <div className="row" key={i}>
+                <div className="row hold-menu" key={i}>
+                    <div className="mask"></div>
                     <a href="#details" className="col s3 modal-trigger"
                        onClick={()=>{select(el)}}>{formatName(el.name)}</a>
                     <p className="col s2">{el.protein}</p>
