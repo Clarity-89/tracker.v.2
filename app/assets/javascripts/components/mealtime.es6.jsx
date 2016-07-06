@@ -9,7 +9,6 @@ class Mealtime extends React.Component {
 
     componentDidMount() {
         interact('.hold-menu').on('hold', function(event) {
-            console.log('holding', event.currentTarget)
             event.currentTarget.classList.toggle('active');
         })
     }
@@ -32,13 +31,18 @@ class Mealtime extends React.Component {
              this.setState({
                  loading: false,
                  selected: selected
-             })
-             console.log(this.state.selected)
+             });
          })
          .error(response => {
              this.setState({ loading: false });
-             console.log('error', response);
+             Materialize.toast('Failed to retrieve data. Please try again later.', 2000)
          });
+    }
+
+    // Remove 'active' class from all elements
+    removeActive(e, product) {
+        document.querySelectorAll('.hold-menu').forEach(el => el.classList.remove('active'));
+        this.props.removeEntry(product);
     }
 
     render() {
@@ -56,15 +60,15 @@ class Mealtime extends React.Component {
 
                                     return (
                                         <span className="col s2" key={i2}>
-                                                {this.props.data[time]['totals'][macro]}
-                                            </span>
+                                            {this.props.data[time]['totals'][macro]}
+                                        </span>
                                     )
                                 })}
                             </div>
                         </div>
                         <div className="collapsible-body">
                             <Product food={this.props.data[time]['food']} {...this.props}
-                                     select={this.selectProduct.bind(this)}/>
+                                     select={this.selectProduct.bind(this)} remove={this.removeActive.bind(this)}/>
                             <FoodDetails {...this.props} handler={this.props.removeEntry} loading={this.state.loading}
                                                          time={time} product={this.state.selected}/>
                         </div>
@@ -94,12 +98,13 @@ class Product extends React.Component {
     }
 
     render() {
-        let { food, select } = this.props;
+        let { food, select, remove } = this.props;
         let result = food.map((el, i) => {
             return (
                 <div className="row hold-menu" key={i}>
                     <div className="mask">
-                        <a href="#" className="waves-effect waves-circle waves-light btn-flat">
+                        <a href="#" className="waves-effect waves-circle waves-light btn-flat"
+                           onClick={(e) => remove(e, el)}>
                             <i className="material-icons">delete</i>
                         </a>
                     </div>

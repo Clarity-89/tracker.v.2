@@ -43,7 +43,7 @@ class Dashboard extends React.Component {
         })
             .done(response => {
                 this.setState({ data: response.data });
-                Materialize.toast('Successfully deleted product', 1000);
+                Materialize.toast('Successfully deleted product', 3000);
             })
             .fail(response=>Materialize.toast('Failed to remove product. Please try again later.', 2000));
     }
