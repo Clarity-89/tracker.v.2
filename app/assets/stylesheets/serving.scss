@@ -77,15 +77,23 @@
     position: absolute;
     left: 0;
     top: -10px;
-    height: 160%;
+    height: calc(100% + 20px);
     width: 100%;
 
-    .material-icons {
-      color: #fff;
+    .btn-flat {
       position: absolute;
       right: 10px;
-      top: 10px;
-      font-size: 32px;
+      top: 50%;
+      @include transform(translateY(-50%));
+      height: 40px;
+
+      .material-icons {
+        font-size: 22px;
+        color: #fff;
+        position: absolute;
+        top: 5px;
+        right: 15px;
+      }
     }
   }
 }
