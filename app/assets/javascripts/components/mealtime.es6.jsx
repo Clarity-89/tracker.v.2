@@ -95,6 +95,7 @@ class Product extends React.Component {
     componentDidMount() {
         // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
         $('.modal-trigger').leanModal();
+        $('.tooltipped').tooltip({delay: 50});
     }
 
     render() {
@@ -114,6 +115,10 @@ class Product extends React.Component {
                     <p className="col s2">{el.carbs}</p>
                     <p className="col s2">{el.fat}</p>
                     <p className="col s2">{el.calories}</p>
+                    <a href="#" className="waves-effect waves-circle waves-light btn-flat tooltipped"
+                       onClick={(e) => remove(e, el)} data-position="bottom" data-delay="50"
+                       data-tooltip="Delete entry">
+                        <i className="material-icons" id="delete">delete</i></a>
                 </div>
             )
         });

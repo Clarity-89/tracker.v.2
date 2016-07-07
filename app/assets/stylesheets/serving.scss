@@ -67,34 +67,57 @@
 .hold-menu {
   position: relative;
 
-  &.active > .mask {
-    display: block;
-  }
-
   .mask {
-    background-color: rgba(128, 128, 128, 0.9);
     display: none;
-    position: absolute;
-    left: 0;
-    top: -10px;
-    height: calc(100% + 20px);
-    width: 100%;
 
     .btn-flat {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      @include transform(translateY(-50%));
-      height: 40px;
-
-      .material-icons {
-        font-size: 22px;
-        color: #fff;
-        position: absolute;
-        top: 5px;
-        right: 15px;
-      }
+      display: none;
     }
   }
 }
 
+#delete {
+  display: inline-block;
+  margin-left: -25px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .hold-menu {
+    position: relative;
+
+    &.active > .mask {
+      display: block;
+    }
+
+    .mask {
+      background-color: rgba(128, 128, 128, 0.9);
+      display: none;
+      position: absolute;
+      left: 0;
+      top: -10px;
+      height: calc(100% + 20px);
+      width: 100%;
+
+      .btn-flat {
+        display: inline-block;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        @include transform(translateY(-50%));
+        height: 40px;
+
+        .material-icons {
+          font-size: 22px;
+          color: #fff;
+          position: absolute;
+          top: 5px;
+          right: 15px;
+        }
+      }
+    }
+  }
+
+  #delete {
+    display: none;
+  }
+}
