@@ -242,7 +242,7 @@ DEPENDENCIES
   pg (~> 0.15)
   puma (= 3.1.0)
   rails (= 4.2.6)
-  rails_12factor (= 0.0.2)
+  rails_12factor
   react-rails (= 1.4.1)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
