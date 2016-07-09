@@ -79,8 +79,8 @@ Rails.application.configure do
 
     # Prod Mailer config
     config.action_mailer.raise_delivery_errors = true
-    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.delivery_method = :test
     host = 'trackerv2.herokuapp.com'
     config.action_mailer.default_url_options = {host: host, protocol: 'https'}
-    config.action_mailer.smtp_settings = { address: host }
+   # config.action_mailer.smtp_settings = { address: host }
 end
