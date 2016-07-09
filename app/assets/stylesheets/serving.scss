@@ -61,11 +61,16 @@
 }
 
 .collection .collection-item.highlighted {
-  background: #ede7f6;
+  background: #ede7f6;;
 }
 
 .hold-menu {
   position: relative;
+
+  &:hover {
+    cursor: pointer;
+    background-color: darken($background-light, 10%);
+  }
 
   .mask {
     display: none;

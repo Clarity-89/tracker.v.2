@@ -104,24 +104,25 @@ class Product extends React.Component {
         let {food, select, remove} = this.props;
         let result = food.map((el, i) => {
             return (
-                <div className="row hold-menu" key={i}>
+                <div className="row hold-menu modal-trigger" data-target="details" onClick={()=>{select(el)}} key={i}>
                     <div className="mask">
                         <a href="#" className="waves-effect waves-circle waves-light btn-flat"
                            onClick={(e) => remove(e, el)}>
                             <i className="material-icons">delete</i>
                         </a>
                     </div>
-                    <a href="#details" className="col s3 modal-trigger"
-                       onClick={()=>{select(el)}}>{formatName(el.name)}</a>
+                    <p className="col s3">{formatName(el.name)}</p>
                     <p className="col s2">{el.protein}</p>
                     <p className="col s2">{el.carbs}</p>
                     <p className="col s2">{el.fat}</p>
                     <p className="col s2">{el.calories}</p>
-                    <p className="col s1 hide-on-med-and-down"><a href="#"
-                                             className="waves-effect waves-circle waves-light btn-flat tooltipped"
-                                             onClick={(e) => remove(e, el)} data-position="bottom" data-delay="50"
-                                             data-tooltip="Delete entry">
-                        <i className="material-icons" id="delete">delete</i></a></p>
+                    <p className="col s1 hide-on-med-and-down">
+                        <a href="#" className="waves-effect waves-circle waves-light btn-flat tooltipped"
+                           onClick={(e) => remove(e, el)} data-position="bottom"
+                           data-delay="50" data-tooltip="Delete entry">
+                            <i className="material-icons" id="delete">delete</i>
+                        </a>
+                    </p>
                 </div>
             )
         });

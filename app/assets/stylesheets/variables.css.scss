@@ -1,3 +1,5 @@
+$background-light: rgb(244, 244, 244);
+
 /* CSS3 cross-browser helpers */
 @mixin transition($param) {
   transition: $param;
