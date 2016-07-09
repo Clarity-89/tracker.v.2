@@ -8,7 +8,7 @@ class Mealtime extends React.Component {
     }
 
     componentDidMount() {
-        interact('.hold-menu').on('hold', function(event) {
+        interact('.hold-menu').on('hold', function (event) {
             event.currentTarget.classList.toggle('active');
         })
     }
@@ -19,29 +19,31 @@ class Mealtime extends React.Component {
     }
 
     selectProduct(product) {
-        this.setState({ loading: true });
+        this.setState({loading: true});
         let params = {
             "appId": "13957b27",
             "appKey": "634647fd3fadbe686dbaacdbea287beb"
         };
         $.get(`https://api.nutritionix.com/v1_1/item/?id=${product._id}`, params)
-         .done(response => {
-             let selected = response;
-             selected.id = product.id;
-             this.setState({
-                 loading: false,
-                 selected: selected
-             });
-         })
-         .error(response => {
-             this.setState({ loading: false });
-             Materialize.toast('Failed to retrieve data. Please try again later.', 2000)
-         });
+            .done(response => {
+                let selected = response;
+                selected.id = product.id;
+                this.setState({
+                    loading: false,
+                    selected: selected
+                });
+            })
+            .error(response => {
+                this.setState({loading: false});
+                Materialize.toast('Failed to retrieve data. Please try again later.', 2000)
+            });
     }
 
     // Remove 'active' class from all elements
     removeActive(e, product) {
         document.querySelectorAll('.hold-menu').forEach(el => el.classList.remove('active'));
+        console.log('trget', e.currentTarget)
+        $(ReactDOM.findDOMNode(e.currentTarget)).tooltip('remove');
         this.props.removeEntry(product);
     }
 
@@ -99,7 +101,7 @@ class Product extends React.Component {
     }
 
     render() {
-        let { food, select, remove } = this.props;
+        let {food, select, remove} = this.props;
         let result = food.map((el, i) => {
             return (
                 <div className="row hold-menu" key={i}>
@@ -115,10 +117,11 @@ class Product extends React.Component {
                     <p className="col s2">{el.carbs}</p>
                     <p className="col s2">{el.fat}</p>
                     <p className="col s2">{el.calories}</p>
-                    <a href="#" className="waves-effect waves-circle waves-light btn-flat tooltipped"
-                       onClick={(e) => remove(e, el)} data-position="bottom" data-delay="50"
-                       data-tooltip="Delete entry">
-                        <i className="material-icons" id="delete">delete</i></a>
+                    <p className="col s1 hide-on-med-and-down"><a href="#"
+                                             className="waves-effect waves-circle waves-light btn-flat tooltipped"
+                                             onClick={(e) => remove(e, el)} data-position="bottom" data-delay="50"
+                                             data-tooltip="Delete entry">
+                        <i className="material-icons" id="delete">delete</i></a></p>
                 </div>
             )
         });
