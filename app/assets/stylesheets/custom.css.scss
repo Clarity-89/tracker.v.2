@@ -67,6 +67,14 @@ input::-webkit-inner-spin-button, input::-webkit-clear-button {
   display: none;
 }
 
+.flash {
+  position: absolute;
+  z-index: 9;
+  padding: 10px;
+  width: 100%;
+  background: #ff9800;
+}
+
 /* Media queries */
 @media only screen and (max-width: 992px) {
   header, main, footer {
