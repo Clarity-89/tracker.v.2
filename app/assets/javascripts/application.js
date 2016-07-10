@@ -18,7 +18,6 @@
 //= require components
 //= require react_ujs
 //= require_tree .
-
 //= require materialize-sprockets
 
 $(document).ready(function () {

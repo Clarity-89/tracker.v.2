@@ -81,8 +81,14 @@ Rails.application.configure do
 
     # Prod Mailer config
     config.action_mailer.raise_delivery_errors = true
-    config.action_mailer.delivery_method = :sendmail
-    host = 'trackerv2.herokuapp.com'
-    config.action_mailer.default_url_options = {host: host, protocol: 'https'}
-   # config.action_mailer.smtp_settings = { address: host }
+    config.action_mailer.delivery_method = :smtp
+    # SMTP settings for gmail
+    config.action_mailer.smtp_settings = {
+        :address              => "smtp.gmail.com",
+        :port                 => 587,
+        :user_name            => ENV['GMAIL_USERNAME'],
+        :password             => ENV['ADMIN_PASSWORD'],
+        :authentication       => "plain",
+        :enable_starttls_auto => true
+    }
 end
