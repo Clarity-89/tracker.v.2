@@ -21,10 +21,14 @@
 
 //= require materialize-sprockets
 
-$(document).ready(function() {
+$(document).ready(function () {
     // Initialize collapse button
     $(".button-collapse").sideNav();
-    $('body').on('click', function() {
+    $('body').on('click', function () {
         $('.dropdown-content').hide();
     });
+});
+
+$(document).on('page:load', function () {
+    $(".button-collapse").sideNav();
 });
