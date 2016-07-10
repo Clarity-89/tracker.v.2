@@ -63,3 +63,8 @@ footer.page-footer {
 .datepicker {
   text-align: center;
 }
+
+/* Override footer styles */
+footer.page-footer {
+  padding-top: 0;
+}
