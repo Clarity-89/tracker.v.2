@@ -25,8 +25,6 @@ module TrackerV2
 
         # React addons
         config.react.addons = true
-
-        config.serve_static_assets = true
     end
 end
 
