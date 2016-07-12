@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
     root 'static_pages#landing'
 
-    get 'home' => 'static_pages#home'
+    get 'home' => 'servings#index'
 
     get 'contact' => 'static_pages#contact'
     get 'about' => 'static_pages#about'
