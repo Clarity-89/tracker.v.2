@@ -61,7 +61,7 @@
 }
 
 .collection .collection-item.highlighted {
-  background: #ede7f6;;
+  background: lighten($primary-color, 40%);
 }
 
 .hold-menu {

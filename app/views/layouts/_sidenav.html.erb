@@ -1,9 +1,12 @@
 <ul id="slide-out" class="side-nav fixed center user">
-  <li>  <%= gravatar_for current_user %></li>
-  <li><%= current_user.name %> </li>
-  <li><%= current_user.email %></li>
+    <li class="page-logo">
+        <ul>
+            <li><%= current_user.name %> </li>
+            <li><%= current_user.email %></li>
+        </ul>
+    </li>
 
-  <li><%= link_to "Tracker", controller: "servings" %></li>
-  <li><%= link_to "Profile", edit_user_path(current_user) %></li>
-  <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+    <li><%= link_to "Tracker", controller: "servings" %></li>
+    <li><%= link_to "Profile", edit_user_path(current_user) %></li>
+    <li><%= link_to "Log out", logout_path, method: "delete" %></li>
 </ul>

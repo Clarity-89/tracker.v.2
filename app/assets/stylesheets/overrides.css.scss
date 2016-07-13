@@ -1,6 +1,6 @@
 @import "variables";
 
-/* Overridden styles from materialize go here, except default colors */
+/* Overridden styles from materialize go here */
 
 /* Remove top margin from footer */
 footer.page-footer {
@@ -67,4 +67,13 @@ footer.page-footer {
 /* Override footer styles */
 footer.page-footer {
   padding-top: 0;
+}
+
+/* Remove default anchor tag color */
+a {
+  color: inherit !important;
+}
+
+.pagination li.active {
+  background-color: $primary-color !important;
 }

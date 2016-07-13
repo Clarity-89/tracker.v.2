@@ -75,6 +75,10 @@ input::-webkit-inner-spin-button, input::-webkit-clear-button {
   background: #ff9800;
 }
 
+.page-logo {
+  height: 200px;
+}
+
 /* Media queries */
 @media only screen and (max-width: 992px) {
   header, main, footer {
