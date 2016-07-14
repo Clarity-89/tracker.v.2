@@ -1,6 +1,6 @@
 <ul id="slide-out" class="side-nav fixed user">
     <li class="page-logo">
-        <%=image_tag('logo.png')%>
+        <img src="<%= asset_path('logo.png') %>">
     </li>
     <li><%= link_to controller: "servings" do %>
             <i class="material-icons nav-icon">web</i> Tracker
