@@ -77,7 +77,6 @@ input::-webkit-inner-spin-button, input::-webkit-clear-button {
 
 .page-logo {
   text-align: center;
-  height: 200px;
 }
 
 .material-icons.nav-icon {
@@ -86,6 +85,9 @@ input::-webkit-inner-spin-button, input::-webkit-clear-button {
   margin-right: 15px;
 }
 
+.edit-user {
+  margin-top: 25px;
+}
 /* Media queries */
 @media only screen and (max-width: 992px) {
   header, main, footer {

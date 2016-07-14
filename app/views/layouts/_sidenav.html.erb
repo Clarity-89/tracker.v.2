@@ -1,11 +1,7 @@
 <ul id="slide-out" class="side-nav fixed user">
     <li class="page-logo">
-        <ul>
-            <li><%= current_user.name %> </li>
-            <li><%= current_user.email %></li>
-        </ul>
+        <%=image_tag('logo.png')%>
     </li>
-
     <li><%= link_to controller: "servings" do %>
             <i class="material-icons nav-icon">web</i> Tracker
         <% end %>
