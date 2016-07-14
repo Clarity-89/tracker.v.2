@@ -1,4 +1,4 @@
-<ul id="slide-out" class="side-nav fixed center user">
+<ul id="slide-out" class="side-nav fixed user">
     <li class="page-logo">
         <ul>
             <li><%= current_user.name %> </li>
@@ -6,7 +6,17 @@
         </ul>
     </li>
 
-    <li><%= link_to "Tracker", controller: "servings" %></li>
-    <li><%= link_to "Profile", edit_user_path(current_user) %></li>
-    <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+    <li><%= link_to controller: "servings" do %>
+            <i class="material-icons nav-icon">web</i> Tracker
+        <% end %>
+    </li>
+    <li><%= link_to edit_user_path(current_user) do %>
+            <i class="material-icons nav-icon">perm_identity</i> Profile
+        <% end %>
+    </li>
+    <li>
+        <%= link_to logout_path, method: "delete" do %>
+            <i class="material-icons nav-icon">power_settings_new</i> Log out
+        <% end %>
+    </li>
 </ul>
