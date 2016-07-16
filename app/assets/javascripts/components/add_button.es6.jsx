@@ -7,7 +7,7 @@ class AddButton extends React.Component {
     }
 
     clicked() {
-        this.setState({ clicked: !this.state.clicked });
+        this.setState({clicked: !this.state.clicked});
     }
 
     isClicked(el) {
@@ -37,12 +37,14 @@ class AddButton extends React.Component {
                         </li>
                         <li><p className={this.isClicked('p')}>Lunch</p>
                             <a className="btn-floating yellow darken-1" onClick={()=>{this.redirect('lunch')}}>
-                                <i><img className="material-icons" src="/assets/lunch.svg"/></i>
+                                <i><img className="material-icons"
+                                        src="https://s3-eu-west-1.amazonaws.com/myimgs89/tracker/lunch.svg"/></i>
                             </a>
                         </li>
                         <li><p className={this.isClicked('p')}>Dinner</p>
                             <a className="btn-floating blue" onClick={()=>{this.redirect('dinner')}}>
-                                <i><img className="material-icons" src="/assets/dinner.svg"/></i>
+                                <i><img className="material-icons"
+                                        src="https://s3-eu-west-1.amazonaws.com/myimgs89/tracker/dinner.svg"/></i>
                             </a>
                         </li>
                     </ul>
