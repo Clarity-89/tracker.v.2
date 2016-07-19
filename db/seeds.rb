@@ -16,8 +16,8 @@ else
 
 end
 
-User.create!(name: "Example User",
-             email: "example@railstutorial.org",
+User.create!(name: "Guest",
+             email: "guest@test.org",
              password: "foobar",
              password_confirmation: "foobar",
              activated: true, activated_at: Time.zone.now)
