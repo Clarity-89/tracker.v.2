@@ -4,7 +4,12 @@
             <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
         <% end %>
         <div class="nav-wrapper">
-            <%= link_to "Calorie Tracker", root_path, class: "brand-logo" %>
+            <% if content_for?(:title) %>
+                <%= yield :title %>
+            <% else %>
+                <%= link_to "Calorie Tracker", root_path, class: "brand-logo" %>
+            <% end %>
+
         </div>
     </div>
 </nav>
