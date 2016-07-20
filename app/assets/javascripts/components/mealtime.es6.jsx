@@ -8,7 +8,7 @@ class Mealtime extends React.Component {
     }
 
     componentDidMount() {
-        interact('.hold-menu').on('hold', function (event) {
+        interact('.hold-menu').on('hold', function(event) {
             event.currentTarget.classList.toggle('active');
         })
     }
@@ -19,24 +19,24 @@ class Mealtime extends React.Component {
     }
 
     selectProduct(product) {
-        this.setState({loading: true});
+        this.setState({ loading: true });
         let params = {
             "appId": "13957b27",
             "appKey": "634647fd3fadbe686dbaacdbea287beb"
         };
         $.get(`https://api.nutritionix.com/v1_1/item/?id=${product._id}`, params)
-            .done(response => {
-                let selected = response;
-                selected.id = product.id;
-                this.setState({
-                    loading: false,
-                    selected: selected
-                });
-            })
-            .error(response => {
-                this.setState({loading: false});
-                Materialize.toast('Failed to retrieve data. Please try again later.', 2000)
-            });
+         .done(response => {
+             let selected = response;
+             selected.id = product.id;
+             this.setState({
+                 loading: false,
+                 selected: selected
+             });
+         })
+         .error(response => {
+             this.setState({ loading: false });
+             Materialize.toast('Failed to retrieve data. Please try again later.', 2000)
+         });
     }
 
     // Remove 'active' class from all elements
@@ -95,11 +95,11 @@ class Product extends React.Component {
     componentDidMount() {
         // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
         $('.modal-trigger').leanModal();
-        $('.tooltipped').tooltip({delay: 50});
+        $('.tooltipped').tooltip({ delay: 50 });
     }
 
     render() {
-        let {food, select, remove} = this.props;
+        let { food, select, remove } = this.props;
         let result = food.map((el, i) => {
             return (
                 <div className="row hold-menu modal-trigger" data-target="details" onClick={()=>{select(el)}} key={i}>
