@@ -42,7 +42,6 @@ class Mealtime extends React.Component {
     // Remove 'active' class from all elements
     removeActive(e, product) {
         document.querySelectorAll('.hold-menu').forEach(el => el.classList.remove('active'));
-        console.log('trget', e.currentTarget)
         $(ReactDOM.findDOMNode(e.currentTarget)).tooltip('remove');
         this.props.removeEntry(product);
     }
@@ -59,7 +58,6 @@ class Mealtime extends React.Component {
                                     {cap(time)}
                                 </span>
                                 {this.props.macros.map((macro, i2) => {
-
                                     return (
                                         <span className="col s2" key={i2}>
                                             {this.props.data[time]['totals'][macro]}
