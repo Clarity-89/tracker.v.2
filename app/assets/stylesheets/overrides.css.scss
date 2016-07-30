@@ -77,3 +77,8 @@ a {
 .pagination li.active {
   background-color: $primary-color !important;
 }
+
+/* Center logo vertically*/
+nav .brand-logo {
+  top: 0;
+}
