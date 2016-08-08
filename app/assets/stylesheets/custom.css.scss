@@ -112,4 +112,15 @@ input::-webkit-inner-spin-button, input::-webkit-clear-button {
   #landing-title {
     width: 95%;
   }
+
+  /* Align links on mobile */
+  footer.page-footer {
+    .footer-copyright.footer-custom {
+      height: auto;
+
+      .about-links {
+        width: auto;
+      }
+    }
+  }
 }
