@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Calorie Tracker 2.0</title>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <%= render 'layouts/shim' %>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calorie Tracker 2.0</title>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/shim' %>
 </head>
 <body>
 <header>
-  <%= render 'layouts/toolbar' %>
-  <% if logged_in? %>
-      <%= render 'layouts/sidenav' %>
-  <% end %>
-
+    <% if logged_in? %>
+        <%= render 'layouts/toolbar' %>
+        <%= render 'layouts/sidenav' %>
+    <% end %>
 </header>
 
 <main>
-  <% flash.each do |type, message| %>
-      <div class="flash"><%= message %></div>
-  <% end %>
-  <%= yield %>
+    <% flash.each do |type, message| %>
+        <div class="flash"><%= message %></div>
+    <% end %>
+    <%= yield %>
 </main>
 
-<%= render 'layouts/footer' unless current_page?('/landing') || current_page?('/signup') || current_page?('/login') %>
+<% if logged_in? %>
+    <%= render 'layouts/footer' %>
+<% end %>
 </body>
-
 </html>
